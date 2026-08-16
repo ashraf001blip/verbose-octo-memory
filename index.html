@@ -1,331 +1,1240 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Learnova — Learn Without Limits</title>
-  <meta name="description" content="Learnova is a modern online learning platform for courses, live classes, projects and AI-powered learning." />
-  <link rel="canonical" href="https://your-domain.example/" />
-  <meta name="theme-color" content="#0f172a" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Learnova — Learn Without Limits" />
-  <meta property="og:description" content="Learnova is a modern online learning platform for courses, live classes, projects and AI-powered learning." />
-  <meta property="og:image" content="https://your-domain.example/og-image.png" />
-  <meta property="og:url" content="https://your-domain.example/" />
+    <title>Lerno — Learn. Build. Become.</title>
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Learnova — Learn Without Limits" />
-  <meta name="twitter:description" content="Learnova is a modern online learning platform." />
-  <meta name="twitter:image" content="https://your-domain.example/og-image.png" />
-
-  <!-- Schema (basic) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"Learnova",
-    "url":"https://your-domain.example/"
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <a class="skip-link" href="#main">Skip to content</a>
+<!-- ================= NAVBAR ================= -->
 
-  <div class="app">
+<header class="navbar">
 
-    <header class="header" role="banner">
-      <div class="container nav-container">
-        <a href="#home" class="logo" aria-label="Learnova homepage">
-          <span class="logo-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
-          <span>Learn<span class="logo-highlight">ova</span></span>
+    <a href="#" class="logo">
+        <span>L</span>
+        Lerno
+    </a>
+
+    <nav id="mainNav">
+
+        <a href="#home" class="active">
+            Home
         </a>
 
-        <nav class="desktop-nav" role="navigation" aria-label="Primary navigation">
-          <a href="#home" class="nav-link active">Home</a>
-          <a href="#courses" class="nav-link">Courses</a>
-          <a href="#live" class="nav-link">Live Classes</a>
-          <a href="#instructors" class="nav-link">Instructors</a>
-          <a href="#ai-coach" class="nav-link">AI Coach</a>
-        </nav>
+        <a href="#courses">
+            Courses
+        </a>
 
-        <div class="nav-actions">
-          <button class="icon-btn theme-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme" type="button">
-            <i class="fa-solid fa-moon" aria-hidden="true"></i>
-          </button>
+        <a href="#classes">
+            Classes
+        </a>
 
-          <button class="icon-btn notification-btn" id="notificationBtn" aria-label="Notifications" type="button">
-            <i class="fa-regular fa-bell" aria-hidden="true"></i>
-            <span class="notification-dot" aria-hidden="true"></span>
-          </button>
+        <a href="#teachers">
+            Teachers
+        </a>
 
-          <button class="login-btn" id="loginBtn" type="button">Log in</button>
-          <button class="signup-btn" id="signupBtn" type="button">Get Started</button>
+        <a href="#about">
+            About
+        </a>
 
-          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false" type="button">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-          </button>
+    </nav>
+
+    <div class="nav-actions">
+
+        <button
+            class="theme-button"
+            onclick="toggleTheme()"
+            title="Change theme"
+        >
+            🌙
+        </button>
+
+        <button
+            class="login-button"
+            onclick="openLogin()"
+        >
+            Login
+        </button>
+
+        <button
+            class="signup-button"
+            onclick="openSignup()"
+        >
+            Sign Up
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MOBILE MENU ================= -->
+
+<div id="mobileMenu" class="mobile-menu">
+
+    <a href="#home" onclick="closeMenu()">
+        Home
+    </a>
+
+    <a href="#courses" onclick="closeMenu()">
+        Courses
+    </a>
+
+    <a href="#classes" onclick="closeMenu()">
+        Classes
+    </a>
+
+    <a href="#teachers" onclick="closeMenu()">
+        Teachers
+    </a>
+
+    <a href="#about" onclick="closeMenu()">
+        About
+    </a>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<main>
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            🚀 THE FUTURE OF ONLINE LEARNING
         </div>
-      </div>
 
-      <nav id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile navigation" hidden>
-        <a href="#home">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#live">Live Classes</a>
-        <a href="#instructors">Instructors</a>
-        <a href="#ai-coach">AI Coach</a>
-        <button class="mobile-signup" id="mobileSignup" type="button">Get Started</button>
-      </nav>
-    </header>
+        <h1>
+            Learn skills that
+            <span>change your future.</span>
+        </h1>
 
-    <main id="main">
+        <p>
+            Learn from instructors, attend live classes,
+            complete assignments, take tests and build
+            skills for your career or your passion.
+        </p>
 
-      <section class="hero" id="home" aria-labelledby="hero-heading">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <div class="hero-badge">
-              <span class="badge-pulse" aria-hidden="true"></span>
-              The future of learning is here
+        <div class="hero-buttons">
+
+            <button
+                class="primary-button"
+                onclick="openSignup()"
+            >
+                Start Learning →
+            </button>
+
+            <button
+                class="secondary-button"
+                onclick="scrollToCourses()"
+            >
+                Explore Courses
+            </button>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>500+</strong>
+                <span>Students</span>
             </div>
 
-            <h1 id="hero-heading">
-              Learn skills.
-              <span>Build your future.</span>
-            </h1>
+            <div>
+                <strong>30+</strong>
+                <span>Courses</span>
+            </div>
 
-            <p class="hero-description">
-              Learn from expert instructors, join live classes, build real projects and use AI to accelerate your learning journey.
+            <div>
+                <strong>20+</strong>
+                <span>Teachers</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO VISUAL -->
+
+    <div class="hero-visual">
+
+        <div class="floating-card live-card">
+
+            <div class="live-dot"></div>
+
+            <div>
+                <strong>Live Class</strong>
+                <small>Starting in 10 minutes</small>
+            </div>
+
+        </div>
+
+
+        <div class="main-learning-card">
+
+            <div class="learning-icon">
+                ⚡
+            </div>
+
+            <span class="small-label">
+                CONTINUE LEARNING
+            </span>
+
+            <h3>
+                JavaScript Fundamentals
+            </h3>
+
+            <p>
+                Learn JavaScript from the beginning.
             </p>
 
-            <div class="hero-actions">
-              <a href="#courses" class="primary-btn">Explore Courses <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-              <a href="#live" class="secondary-btn"><i class="fa-solid fa-play" aria-hidden="true"></i> View Live Classes</a>
+            <div class="progress-container">
+
+                <div
+                    class="progress-bar"
+                    style="width:68%"
+                ></div>
+
             </div>
 
-            <div class="hero-trust">
-              <div class="avatar-stack" aria-hidden="true">
-                <div class="avatar"><img src="https://i.pravatar.cc/80?img=12" alt="Student" loading="lazy"></div>
-                <div class="avatar"><img src="https://i.pravatar.cc/80?img=32" alt="Student" loading="lazy"></div>
-                <div class="avatar"><img src="https://i.pravatar.cc/80?img=45" alt="Student" loading="lazy"></div>
-                <div class="avatar"><img src="https://i.pravatar.cc/80?img=52" alt="Student" loading="lazy"></div>
-                <div class="avatar-more">+10k</div>
-              </div>
-              <div class="trust-text"><strong>10,000+</strong><span>students learning today</span></div>
-            </div>
-          </div>
+            <div class="progress-info">
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="floating-card card-top">
-              <div class="floating-icon green"><i class="fa-solid fa-chart-line"></i></div>
-              <div><small>Weekly progress</small><strong>+24.8%</strong></div>
+                <span>
+                    68% complete
+                </span>
+
+                <span>
+                    12 / 18 lessons
+                </span>
+
             </div>
 
-            <div class="learning-card">
-              <div class="learning-card-top">
-                <span class="live-label"><span></span>LIVE</span>
-                <button class="more-btn" aria-label="More options" type="button"><i class="fa-solid fa-ellipsis"></i></button>
-              </div>
+            <button class="continue-button">
+                Continue Learning
+            </button>
 
-              <div class="course-preview">
-                <div class="play-circle"><i class="fa-solid fa-play"></i></div>
-              </div>
-
-              <div class="learning-card-content">
-                <span class="mini-category">WEB DEVELOPMENT</span>
-                <h3>Build Modern Websites With HTML & CSS</h3>
-
-                <div class="lesson-meta">
-                  <span><i class="fa-regular fa-clock"></i> 2h 24m</span>
-                  <span><i class="fa-solid fa-users"></i> 1.2k students</span>
-                </div>
-
-                <div class="progress-label"><span>Your progress</span><strong>68%</strong></div>
-                <div class="progress-bar" aria-hidden="true"><span style="width:68%"></span></div>
-
-                <button class="continue-btn" type="button">Continue Learning <i class="fa-solid fa-arrow-right"></i></button>
-              </div>
-            </div>
-
-            <div class="floating-card card-bottom">
-              <div class="achievement-icon"><i class="fa-solid fa-trophy"></i></div>
-              <div><small>Achievement unlocked</small><strong>7 day streak 🔥</strong></div>
-            </div>
-          </div>
         </div>
-      </section>
 
-      <section class="stats-section" aria-label="Stats">
-        <div class="container stats-grid">
-          <div class="stat"><strong data-count="12000">0</strong><span>Active Students</span></div>
-          <div class="stat"><strong data-count="850">0</strong><span>Expert Courses</span></div>
-          <div class="stat"><strong data-count="120">0</strong><span>Expert Instructors</span></div>
-          <div class="stat"><strong data-count="98">0</strong><span>% Satisfaction</span></div>
+
+        <div class="floating-card teacher-card-small">
+
+            <div class="mini-avatar">
+                A
+            </div>
+
+            <div>
+
+                <strong>Ashraf</strong>
+
+                <small>
+                    ✓ Verified Instructor
+                </small>
+
+            </div>
+
         </div>
-      </section>
 
-      <section class="section" id="categories" aria-labelledby="categories-heading">
-        <div class="container">
-          <div class="section-heading">
-            <div><span class="section-label">EXPLORE</span><h2 id="categories-heading">Learn something <span>new today.</span></h2></div>
-            <a href="#courses" class="text-link">View all categories <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
+    </div>
 
-          <div class="category-grid">
-            <button class="category-card" data-category="Development"><span class="category-icon purple"><i class="fa-solid fa-code"></i></span><div><h3>Development</h3><p>124 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-            <button class="category-card" data-category="Design"><span class="category-icon pink"><i class="fa-solid fa-pen-ruler"></i></span><div><h3>Design</h3><p>86 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-            <button class="category-card" data-category="AI & Data"><span class="category-icon blue"><i class="fa-solid fa-robot"></i></span><div><h3>AI & Data</h3><p>92 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-            <button class="category-card" data-category="Business"><span class="category-icon orange"><i class="fa-solid fa-chart-pie"></i></span><div><h3>Business</h3><p>74 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-            <button class="category-card" data-category="Marketing"><span class="category-icon green"><i class="fa-solid fa-bullhorn"></i></span><div><h3>Marketing</h3><p>61 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-            <button class="category-card" data-category="Photography"><span class="category-icon yellow"><i class="fa-solid fa-camera"></i></span><div><h3>Photography</h3><p>48 courses</p></div><i class="fa-solid fa-arrow-right category-arrow"></i></button>
-          </div>
+</section>
+
+
+<!-- ================= LEARNING GOALS ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <span>
+            FIND YOUR PATH
+        </span>
+
+        <h2>
+            What are you learning for?
+        </h2>
+
+        <p>
+            Whether you're building a career or learning
+            something just because you love it.
+        </p>
+
+    </div>
+
+
+    <div class="goal-grid">
+
+        <article
+            class="goal-card"
+            onclick="selectGoal('career')"
+        >
+
+            <div class="goal-icon">
+                💼
+            </div>
+
+            <h3>
+                Career
+            </h3>
+
+            <p>
+                Learn practical skills that can help
+                prepare you for your future career.
+            </p>
+
+            <span>
+                Explore career skills →
+            </span>
+
+        </article>
+
+
+        <article
+            class="goal-card"
+            onclick="selectGoal('hobby')"
+        >
+
+            <div class="goal-icon">
+                🎨
+            </div>
+
+            <h3>
+                Hobby
+            </h3>
+
+            <p>
+                Learn something interesting simply
+                because you enjoy it.
+            </p>
+
+            <span>
+                Explore hobbies →
+            </span>
+
+        </article>
+
+
+        <article
+            class="goal-card"
+            onclick="selectGoal('school')"
+        >
+
+            <div class="goal-icon">
+                🎓
+            </div>
+
+            <h3>
+                School
+            </h3>
+
+            <p>
+                Improve your knowledge and continue
+                learning outside school.
+            </p>
+
+            <span>
+                Explore school subjects →
+            </span>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COURSES ================= -->
+
+<section
+    id="courses"
+    class="section courses-section"
+>
+
+    <div class="section-title-row">
+
+        <div>
+
+            <span>
+                START LEARNING
+            </span>
+
+            <h2>
+                Popular courses
+            </h2>
+
         </div>
-      </section>
 
-      <section class="section courses-section" id="courses" aria-labelledby="courses-heading">
-        <div class="container">
-          <div class="section-heading">
-            <div><span class="section-label">TOP COURSES</span><h2 id="courses-heading">Skills that <span>move you forward.</span></h2></div>
-            <div class="course-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="courseSearch" placeholder="Search courses..." aria-label="Search courses"></div>
-          </div>
+        <button
+            onclick="showAllCourses()"
+            class="view-all"
+        >
+            View all →
+        </button>
 
-          <div class="filter-row" role="tablist" aria-label="Course categories">
-            <button class="filter-btn active" data-filter="All" role="tab">All</button>
-            <button class="filter-btn" data-filter="Development" role="tab">Development</button>
-            <button class="filter-btn" data-filter="Design" role="tab">Design</button>
-            <button class="filter-btn" data-filter="AI & Data" role="tab">AI & Data</button>
-            <button class="filter-btn" data-filter="Business" role="tab">Business</button>
-          </div>
+    </div>
 
-          <div class="courses-grid" id="coursesGrid" aria-live="polite">
-            <!-- Course 1 -->
-            <article class="course-card" data-category="Development" data-title="Full Stack Web Development">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Web development" loading="lazy">
-                <span class="course-tag">Bestseller</span>
-                <button class="favorite-btn" aria-label="Favorite course" type="button"><i class="fa-regular fa-heart"></i></button>
-              </div>
 
-              <div class="course-content">
-                <div class="course-category">DEVELOPMENT</div>
-                <h3>Full Stack Web Development</h3>
-                <p class="course-description">Build modern websites and full-stack applications from scratch.</p>
+    <div class="course-grid">
 
-                <div class="course-instructor"><img src="https://i.pravatar.cc/80?img=11" alt="Instructor" loading="lazy"><span>David Anderson</span></div>
+
+        <!-- HTML -->
+
+        <article class="course">
+
+            <div class="course-image html-course">
+                🌐
+            </div>
+
+            <div class="course-body">
+
+                <span class="course-category">
+                    WEB DEVELOPMENT
+                </span>
+
+                <h3>
+                    HTML Fundamentals
+                </h3>
+
+                <p>
+                    Learn how websites are built
+                    from the ground up.
+                </p>
 
                 <div class="course-info">
-                  <span><i class="fa-regular fa-star"></i>4.9</span>
-                  <span><i class="fa-regular fa-clock"></i>18h</span>
-                  <span><i class="fa-solid fa-user-group"></i>8.4k</span>
+
+                    <span>
+                        👥 248 students
+                    </span>
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
                 </div>
 
-                <div class="course-footer"><strong>$39.99</strong><button class="course-btn" data-course="Full Stack Web Development" type="button">View Course <i class="fa-solid fa-arrow-right"></i></button></div>
-              </div>
-            </article>
+                <button
+                    onclick="openCourse('HTML Fundamentals')"
+                    class="course-button"
+                >
+                    View Course
+                </button>
 
-            <!-- Course 2 -->
-            <article class="course-card" data-category="AI & Data" data-title="Artificial Intelligence Masterclass">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80" alt="Artificial intelligence" loading="lazy">
-                <span class="course-tag ai-tag">Trending</span>
-                <button class="favorite-btn" aria-label="Favorite course" type="button"><i class="fa-regular fa-heart"></i></button>
-              </div>
+            </div>
 
-              <div class="course-content">
-                <div class="course-category">AI & DATA</div>
-                <h3>Artificial Intelligence Masterclass</h3>
-                <p class="course-description">Understand AI, machine learning and modern intelligent systems.</p>
+        </article>
 
-                <div class="course-instructor"><img src="https://i.pravatar.cc/80?img=14" alt="Instructor" loading="lazy"><span>Sarah Mitchell</span></div>
+
+        <!-- CSS -->
+
+        <article class="course">
+
+            <div class="course-image css-course">
+                🎨
+            </div>
+
+            <div class="course-body">
+
+                <span class="course-category">
+                    WEB DESIGN
+                </span>
+
+                <h3>
+                    CSS Masterclass
+                </h3>
+
+                <p>
+                    Create beautiful and responsive
+                    websites.
+                </p>
 
                 <div class="course-info">
-                  <span><i class="fa-regular fa-star"></i>4.8</span>
-                  <span><i class="fa-regular fa-clock"></i>22h</span>
-                  <span><i class="fa-solid fa-user-group"></i>6.1k</span>
+
+                    <span>
+                        👥 184 students
+                    </span>
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
                 </div>
 
-                <div class="course-footer"><strong>$49.99</strong><button class="course-btn" data-course="Artificial Intelligence Masterclass" type="button">View Course <i class="fa-solid fa-arrow-right"></i></button></div>
-              </div>
-            </article>
+                <button
+                    onclick="openCourse('CSS Masterclass')"
+                    class="course-button"
+                >
+                    View Course
+                </button>
 
-            <!-- Course 3 -->
-            <article class="course-card" data-category="Design" data-title="UI/UX Design System">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80" alt="UI UX design" loading="lazy">
-                <span class="course-tag design-tag">Popular</span>
-                <button class="favorite-btn" aria-label="Favorite course" type="button"><i class="fa-regular fa-heart"></i></button>
-              </div>
+            </div>
 
-              <div class="course-content">
-                <div class="course-category">DESIGN</div>
-                <h3>UI/UX Design System</h3>
-                <p class="course-description">Learn how to create beautiful interfaces and professional design systems.</p>
+        </article>
 
-                <div class="course-instructor"><img src="https://i.pravatar.cc/80?img=47" alt="Instructor" loading="lazy"><span>Emma Wilson</span></div>
+
+        <!-- JAVASCRIPT -->
+
+        <article class="course">
+
+            <div class="course-image js-course">
+                ⚡
+            </div>
+
+            <div class="course-body">
+
+                <span class="course-category">
+                    PROGRAMMING
+                </span>
+
+                <h3>
+                    JavaScript Basics
+                </h3>
+
+                <p>
+                    Make your websites interactive
+                    with JavaScript.
+                </p>
 
                 <div class="course-info">
-                  <span><i class="fa-regular fa-star"></i>4.9</span>
-                  <span><i class="fa-regular fa-clock"></i>14h</span>
-                  <span><i class="fa-solid fa-user-group"></i>5.8k</span>
+
+                    <span>
+                        👥 211 students
+                    </span>
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
                 </div>
 
-                <div class="course-footer"><strong>$34.99</strong><button class="course-btn" data-course="UI/UX Design System" type="button">View Course <i class="fa-solid fa-arrow-right"></i></button></div>
-              </div>
-            </article>
+                <button
+                    onclick="openCourse('JavaScript Basics')"
+                    class="course-button"
+                >
+                    View Course
+                </button>
 
-            <!-- Course 4 -->
-            <article class="course-card" data-category="Business" data-title="Entrepreneurship Accelerator">
-              <div class="course-image">
-                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80" alt="Business team" loading="lazy">
-                <span class="course-tag business-tag">New</span>
-                <button class="favorite-btn" aria-label="Favorite course" type="button"><i class="fa-regular fa-heart"></i></button>
-              </div>
+            </div>
 
-              <div class="course-content">
-                <div class="course-category">BUSINESS</div>
-                <h3>Entrepreneurship Accelerator</h3>
-                <p class="course-description">Learn how to turn ideas into real businesses and products.</p>
+        </article>
 
-                <div class="course-instructor"><img src="https://i.pravatar.cc/80?img=60" alt="Instructor" loading="lazy"><span>Michael Carter</span></div>
+
+        <!-- UI UX -->
+
+        <article class="course">
+
+            <div class="course-image ui-course">
+                🧩
+            </div>
+
+            <div class="course-body">
+
+                <span class="course-category">
+                    DESIGN
+                </span>
+
+                <h3>
+                    UI/UX Design
+                </h3>
+
+                <p>
+                    Learn how to design useful
+                    digital products.
+                </p>
 
                 <div class="course-info">
-                  <span><i class="fa-regular fa-star"></i>4.7</span>
-                  <span><i class="fa-regular fa-clock"></i>12h</span>
-                  <span><i class="fa-solid fa-user-group"></i>3.7k</span>
+
+                    <span>
+                        👥 156 students
+                    </span>
+
+                    <span>
+                        ⭐ 5.0
+                    </span>
+
                 </div>
 
-                <div class="course-footer"><strong>$29.99</strong><button class="course-btn" data-course="Entrepreneurship Accelerator" type="button">View Course <i class="fa-solid fa-arrow-right"></i></button></div>
-              </div>
-            </article>
-          </div>
+                <button
+                    onclick="openCourse('UI/UX Design')"
+                    class="course-button"
+                >
+                    View Course
+                </button>
 
-          <div class="empty-state" id="emptyState" hidden>
-            <div class="empty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <h3>No courses found</h3>
-            <p>Try searching for another course or category.</p>
-          </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CLASSES ================= -->
+
+<section
+    id="classes"
+    class="section classes-section"
+>
+
+    <div class="section-title">
+
+        <span>
+            LIVE LEARNING
+        </span>
+
+        <h2>
+            Join a live class.
+        </h2>
+
+        <p>
+            Attend classes with your instructor
+            and other students.
+        </p>
+
+    </div>
+
+
+    <div class="class-list">
+
+        <article class="class-item">
+
+            <div class="class-time">
+
+                <strong>
+                    4:00
+                </strong>
+
+                <span>
+                    PM
+                </span>
+
+            </div>
+
+            <div class="class-info">
+
+                <span class="live-label">
+                    🔴 LIVE SOON
+                </span>
+
+                <h3>
+                    JavaScript Fundamentals
+                </h3>
+
+                <p>
+                    With Ashraf · Beginner
+                </p>
+
+            </div>
+
+            <button
+                onclick="joinClass('JavaScript Fundamentals')"
+                class="join-button"
+            >
+                Join Class
+            </button>
+
+        </article>
+
+
+        <article class="class-item">
+
+            <div class="class-time">
+
+                <strong>
+                    6:30
+                </strong>
+
+                <span>
+                    PM
+                </span>
+
+            </div>
+
+            <div class="class-info">
+
+                <span class="upcoming-label">
+                    UPCOMING
+                </span>
+
+                <h3>
+                    UI/UX Design Workshop
+                </h3>
+
+                <p>
+                    With Ashraf · Intermediate
+                </p>
+
+            </div>
+
+            <button
+                onclick="joinClass('UI/UX Design Workshop')"
+                class="join-button"
+            >
+                Set Reminder
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TEACHERS ================= -->
+
+<section
+    id="teachers"
+    class="section"
+>
+
+    <div class="section-title">
+
+        <span>
+            OUR INSTRUCTORS
+        </span>
+
+        <h2>
+            Meet the teachers.
+        </h2>
+
+    </div>
+
+
+    <div class="teacher-grid">
+
+
+        <article class="teacher">
+
+            <div class="teacher-picture teacher-one">
+                A
+            </div>
+
+            <h3>
+                Ashraf
+                <span>✓</span>
+            </h3>
+
+            <p>
+                HTML · CSS · JavaScript · UI/UX
+            </p>
+
+        </article>
+
+
+        <article class="teacher">
+
+            <div class="teacher-picture teacher-two">
+                M
+            </div>
+
+            <h3>
+                Musa Bello
+            </h3>
+
+            <p>
+                Game Development
+            </p>
+
+        </article>
+
+
+        <article class="teacher">
+
+            <div class="teacher-picture teacher-three">
+                S
+            </div>
+
+            <h3>
+                Sarah James
+            </h3>
+
+            <p>
+                Graphic Design
+            </p>
+
+        </article>
+
+
+        <article class="teacher">
+
+            <div class="teacher-picture teacher-four">
+                D
+            </div>
+
+            <h3>
+                Daniel Smith
+            </h3>
+
+            <p>
+                Python & AI
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TEACHER CTA ================= -->
+
+<section class="teacher-cta">
+
+    <div>
+
+        <span>
+            FOR INSTRUCTORS
+        </span>
+
+        <h2>
+            Have a skill?
+            Teach it on Lerno.
+        </h2>
+
+        <p>
+            Create courses, post classes, upload
+            assignments and connect with students.
+        </p>
+
+    </div>
+
+    <button
+        onclick="openTeacherSignup()"
+        class="primary-button"
+    >
+        Become an Instructor →
+    </button>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section
+    id="about"
+    class="section about-section"
+>
+
+    <div class="section-title">
+
+        <span>
+            ABOUT LERNO
+        </span>
+
+        <h2>
+            Learn. Build. Become.
+        </h2>
+
+        <p>
+            Lerno is designed to bring students and
+            instructors together in one modern learning
+            platform.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <span>L</span>
+        Lerno
+
+    </div>
+
+    <p>
+        Learn. Build. Become.
+    </p>
+
+    <p>
+        © 2026 Lerno
+    </p>
+
+</footer>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div
+    id="loginModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-button"
+            onclick="closeLogin()"
+        >
+            ×
+        </button>
+
+        <div class="modal-header">
+
+            <span class="modal-icon">
+                🔐
+            </span>
+
+            <h2>
+                Welcome back
+            </h2>
+
+            <p>
+                Login to your Lerno account.
+            </p>
+
         </div>
-      </section>
 
-    </main>
 
-    <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <p>&copy; <span id="year"></span> Learnova. All rights reserved.</p>
-      </div>
-    </footer>
+        <div class="login-tabs">
 
-  </div>
+            <button
+                id="studentTab"
+                class="selected"
+                onclick="showStudentLogin()"
+            >
+                Student
+            </button>
 
-  <script src="script.js" defer></script>
+            <button
+                id="teacherTab"
+                onclick="showTeacherLogin()"
+            >
+                Teacher
+            </button>
+
+        </div>
+
+
+        <!-- STUDENT LOGIN -->
+
+        <div
+            id="studentLogin"
+            class="login-form"
+        >
+
+            <input
+                id="studentLoginName"
+                type="text"
+                placeholder="Your name"
+            >
+
+            <input
+                type="password"
+                placeholder="Password"
+            >
+
+            <button
+                onclick="studentLogin()"
+                class="primary-button full"
+            >
+                Login as Student
+            </button>
+
+        </div>
+
+
+        <!-- TEACHER LOGIN -->
+
+        <div
+            id="teacherLogin"
+            class="login-form hidden"
+        >
+
+            <input
+                id="teacherLoginName"
+                type="text"
+                placeholder="Teacher name"
+            >
+
+            <input
+                id="teacherLoginPassword"
+                type="password"
+                placeholder="Teacher password"
+            >
+
+            <button
+                onclick="teacherLogin()"
+                class="primary-button full"
+            >
+                Login as Teacher
+            </button>
+
+            <div class="demo-box">
+
+                <strong>
+                    Demo Teacher
+                </strong>
+
+                <br>
+
+                Name:
+                <b>Ashraf</b>
+
+                <br>
+
+                Password:
+                <b>12345</b>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SIGNUP MODAL ================= -->
+
+<div
+    id="signupModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-button"
+            onclick="closeSignup()"
+        >
+            ×
+        </button>
+
+        <div class="modal-header">
+
+            <span class="modal-icon">
+                🚀
+            </span>
+
+            <h2>
+                Join Lerno
+            </h2>
+
+            <p>
+                Create your learning account.
+            </p>
+
+        </div>
+
+
+        <input
+            id="signupName"
+            type="text"
+            placeholder="Full name"
+        >
+
+
+        <div class="account-type">
+
+            <button
+                id="studentType"
+                class="selected"
+                onclick="selectAccountType('student')"
+            >
+                🎓 Student
+            </button>
+
+            <button
+                id="teacherType"
+                onclick="selectAccountType('teacher')"
+            >
+                👨‍🏫 Teacher
+            </button>
+
+        </div>
+
+
+        <!-- STUDENT OPTIONS -->
+
+        <div
+            id="studentOptions"
+        >
+
+            <h4>
+                What are you learning for?
+            </h4>
+
+            <div class="goal-options">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="career"
+                        checked
+                    >
+                    💼 Career
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="hobby"
+                    >
+                    🎨 Hobby
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="goal"
+                        value="school"
+                    >
+                    🎓 School
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- TEACHER OPTIONS -->
+
+        <div
+            id="teacherOptions"
+            class="hidden"
+        >
+
+            <h4>
+                Instructor information
+            </h4>
+
+            <input
+                id="teacherSubject"
+                type="text"
+                placeholder="What do you teach?"
+            >
+
+            <textarea
+                id="teacherDescription"
+                placeholder="Tell students about yourself..."
+            ></textarea>
+
+            <div class="demo-box">
+
+                Teacher applications are reviewed
+                before verification.
+
+            </div>
+
+        </div>
+
+
+        <input
+            id="signupPassword"
+            type="password"
+            placeholder="Create password"
+        >
+
+
+        <button
+            onclick="createAccount()"
+            class="primary-button full"
+        >
+            Create Account
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= COURSE MODAL ================= -->
+
+<div
+    id="courseModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-button"
+            onclick="closeCourse()"
+        >
+            ×
+        </button>
+
+        <div class="modal-header">
+
+            <span
+                id="courseModalIcon"
+                class="modal-icon"
+            >
+                📚
+            </span>
+
+            <h2 id="courseModalTitle">
+                Course
+            </h2>
+
+            <p>
+                Learn with Lerno.
+            </p>
+
+        </div>
+
+        <div class="course-preview">
+
+            <p>
+                🎥 Video lessons
+            </p>
+
+            <p>
+                📝 Assignments
+            </p>
+
+            <p>
+                🧪 Tests
+            </p>
+
+            <p>
+                👨‍🏫 Instructor classes
+            </p>
+
+            <p>
+                📊 Progress tracking
+            </p>
+
+        </div>
+
+        <button
+            onclick="enrollCourse()"
+            class="primary-button full"
+        >
+            Enroll in Course
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
