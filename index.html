@@ -4,1230 +4,1572 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lerno — Learn. Build. Become.</title>
+    <title>Lerno — Learning Platform</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- ================= APP ================= -->
 
-<header class="navbar">
+<div class="app">
 
-    <a href="#" class="logo">
-        <span>L</span>
-        Lerno
-    </a>
+    <!-- ================= SIDEBAR ================= -->
 
-    <nav id="mainNav">
+    <aside class="sidebar" id="sidebar">
 
-        <a href="#home" class="active">
-            Home
-        </a>
-
-        <a href="#courses">
-            Courses
-        </a>
-
-        <a href="#classes">
-            Classes
-        </a>
-
-        <a href="#teachers">
-            Teachers
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
-    </nav>
-
-    <div class="nav-actions">
-
-        <button
-            class="theme-button"
-            onclick="toggleTheme()"
-            title="Change theme"
-        >
-            🌙
-        </button>
-
-        <button
-            class="login-button"
-            onclick="openLogin()"
-        >
-            Login
-        </button>
-
-        <button
-            class="signup-button"
-            onclick="openSignup()"
-        >
-            Sign Up
-        </button>
-
-        <button
-            class="menu-button"
-            onclick="toggleMenu()"
-        >
-            ☰
-        </button>
-
-    </div>
-
-</header>
-
-
-<!-- ================= MOBILE MENU ================= -->
-
-<div id="mobileMenu" class="mobile-menu">
-
-    <a href="#home" onclick="closeMenu()">
-        Home
-    </a>
-
-    <a href="#courses" onclick="closeMenu()">
-        Courses
-    </a>
-
-    <a href="#classes" onclick="closeMenu()">
-        Classes
-    </a>
-
-    <a href="#teachers" onclick="closeMenu()">
-        Teachers
-    </a>
-
-    <a href="#about" onclick="closeMenu()">
-        About
-    </a>
-
-</div>
-
-
-<!-- ================= HERO ================= -->
-
-<main>
-
-<section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <div class="hero-badge">
-            🚀 THE FUTURE OF ONLINE LEARNING
+        <div class="brand">
+            <div class="brand-icon">L</div>
+            <span>Lerno</span>
         </div>
 
-        <h1>
-            Learn skills that
-            <span>change your future.</span>
-        </h1>
+        <div class="user-mini">
 
-        <p>
-            Learn from instructors, attend live classes,
-            complete assignments, take tests and build
-            skills for your career or your passion.
-        </p>
-
-        <div class="hero-buttons">
-
-            <button
-                class="primary-button"
-                onclick="openSignup()"
-            >
-                Start Learning →
-            </button>
-
-            <button
-                class="secondary-button"
-                onclick="scrollToCourses()"
-            >
-                Explore Courses
-            </button>
-
-        </div>
-
-        <div class="hero-stats">
-
-            <div>
-                <strong>500+</strong>
-                <span>Students</span>
-            </div>
-
-            <div>
-                <strong>30+</strong>
-                <span>Courses</span>
-            </div>
-
-            <div>
-                <strong>20+</strong>
-                <span>Teachers</span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- HERO VISUAL -->
-
-    <div class="hero-visual">
-
-        <div class="floating-card live-card">
-
-            <div class="live-dot"></div>
-
-            <div>
-                <strong>Live Class</strong>
-                <small>Starting in 10 minutes</small>
-            </div>
-
-        </div>
-
-
-        <div class="main-learning-card">
-
-            <div class="learning-icon">
-                ⚡
-            </div>
-
-            <span class="small-label">
-                CONTINUE LEARNING
-            </span>
-
-            <h3>
-                JavaScript Fundamentals
-            </h3>
-
-            <p>
-                Learn JavaScript from the beginning.
-            </p>
-
-            <div class="progress-container">
-
-                <div
-                    class="progress-bar"
-                    style="width:68%"
-                ></div>
-
-            </div>
-
-            <div class="progress-info">
-
-                <span>
-                    68% complete
-                </span>
-
-                <span>
-                    12 / 18 lessons
-                </span>
-
-            </div>
-
-            <button class="continue-button">
-                Continue Learning
-            </button>
-
-        </div>
-
-
-        <div class="floating-card teacher-card-small">
-
-            <div class="mini-avatar">
+            <div class="avatar" id="sidebarAvatar">
                 A
             </div>
 
             <div>
+                <strong id="sidebarName">
+                    Ashraf
+                </strong>
 
-                <strong>Ashraf</strong>
-
-                <small>
-                    ✓ Verified Instructor
+                <small id="sidebarRole">
+                    Student
                 </small>
-
             </div>
 
         </div>
 
-    </div>
+        <nav class="side-nav">
 
-</section>
+            <button
+                class="nav-btn active"
+                data-page="home"
+            >
+                <span>🏠</span>
+                Home
+            </button>
 
+            <button
+                class="nav-btn"
+                data-page="learning"
+            >
+                <span>📚</span>
+                My Learning
+            </button>
 
-<!-- ================= LEARNING GOALS ================= -->
+            <button
+                class="nav-btn"
+                data-page="classes"
+            >
+                <span>🎥</span>
+                Live Classes
+            </button>
 
-<section class="section">
+            <button
+                class="nav-btn"
+                data-page="assignments"
+            >
+                <span>📝</span>
+                Assignments
+                <b class="nav-count">3</b>
+            </button>
 
-    <div class="section-title">
+            <button
+                class="nav-btn"
+                data-page="tests"
+            >
+                <span>🧪</span>
+                Tests
+            </button>
 
-        <span>
-            FIND YOUR PATH
-        </span>
+            <button
+                class="nav-btn"
+                data-page="progress"
+            >
+                <span>📊</span>
+                Progress
+            </button>
 
-        <h2>
-            What are you learning for?
-        </h2>
+            <button
+                class="nav-btn"
+                data-page="notifications"
+            >
+                <span>🔔</span>
+                Notifications
+                <b class="nav-count">2</b>
+            </button>
 
-        <p>
-            Whether you're building a career or learning
-            something just because you love it.
-        </p>
+        </nav>
 
-    </div>
+        <div class="sidebar-bottom">
 
+            <button
+                class="nav-btn"
+                data-page="profile"
+            >
+                <span>👤</span>
+                Profile
+            </button>
 
-    <div class="goal-grid">
+            <button
+                class="nav-btn"
+                data-page="settings"
+            >
+                <span>⚙️</span>
+                Settings
+            </button>
 
-        <article
-            class="goal-card"
-            onclick="selectGoal('career')"
-        >
-
-            <div class="goal-icon">
-                💼
-            </div>
-
-            <h3>
-                Career
-            </h3>
-
-            <p>
-                Learn practical skills that can help
-                prepare you for your future career.
-            </p>
-
-            <span>
-                Explore career skills →
-            </span>
-
-        </article>
-
-
-        <article
-            class="goal-card"
-            onclick="selectGoal('hobby')"
-        >
-
-            <div class="goal-icon">
-                🎨
-            </div>
-
-            <h3>
-                Hobby
-            </h3>
-
-            <p>
-                Learn something interesting simply
-                because you enjoy it.
-            </p>
-
-            <span>
-                Explore hobbies →
-            </span>
-
-        </article>
-
-
-        <article
-            class="goal-card"
-            onclick="selectGoal('school')"
-        >
-
-            <div class="goal-icon">
-                🎓
-            </div>
-
-            <h3>
-                School
-            </h3>
-
-            <p>
-                Improve your knowledge and continue
-                learning outside school.
-            </p>
-
-            <span>
-                Explore school subjects →
-            </span>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= COURSES ================= -->
-
-<section
-    id="courses"
-    class="section courses-section"
->
-
-    <div class="section-title-row">
-
-        <div>
-
-            <span>
-                START LEARNING
-            </span>
-
-            <h2>
-                Popular courses
-            </h2>
+            <button
+                class="nav-btn teacher-only"
+                data-page="teacher"
+                id="teacherStudioButton"
+            >
+                <span>👨‍🏫</span>
+                Teacher Studio
+            </button>
 
         </div>
 
-        <button
-            onclick="showAllCourses()"
-            class="view-all"
-        >
-            View all →
-        </button>
+        <div class="sidebar-footer">
+            <span>© 2026 Lerno</span>
+            <span>v1.0</span>
+        </div>
 
-    </div>
+    </aside>
 
 
-    <div class="course-grid">
+    <!-- ================= MAIN ================= -->
 
+    <main class="main">
 
-        <!-- HTML -->
+        <!-- TOPBAR -->
 
-        <article class="course">
+        <header class="topbar">
 
-            <div class="course-image html-course">
-                🌐
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+            >
+                ☰
+            </button>
+
+            <div class="search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search courses, classes..."
+                >
+
             </div>
 
-            <div class="course-body">
-
-                <span class="course-category">
-                    WEB DEVELOPMENT
-                </span>
-
-                <h3>
-                    HTML Fundamentals
-                </h3>
-
-                <p>
-                    Learn how websites are built
-                    from the ground up.
-                </p>
-
-                <div class="course-info">
-
-                    <span>
-                        👥 248 students
-                    </span>
-
-                    <span>
-                        ⭐ 4.9
-                    </span>
-
-                </div>
+            <div class="top-actions">
 
                 <button
-                    onclick="openCourse('HTML Fundamentals')"
-                    class="course-button"
+                    class="icon-btn"
+                    data-page="notifications"
                 >
-                    View Course
+                    🔔
+                    <i></i>
+                </button>
+
+                <button
+                    class="profile-button"
+                    data-page="profile"
+                >
+
+                    <div class="avatar small">
+                        A
+                    </div>
+
+                    <span id="topName">
+                        Ashraf
+                    </span>
+
+                    <span>⌄</span>
+
                 </button>
 
             </div>
 
-        </article>
+        </header>
 
 
-        <!-- CSS -->
+        <!-- ================= CONTENT ================= -->
 
-        <article class="course">
+        <section class="content">
 
-            <div class="course-image css-course">
-                🎨
-            </div>
 
-            <div class="course-body">
+            <!-- =================================================
+                 HOME
+            ================================================= -->
 
-                <span class="course-category">
-                    WEB DESIGN
-                </span>
+            <div
+                class="page active"
+                id="home"
+            >
 
-                <h3>
-                    CSS Masterclass
-                </h3>
+                <div class="welcome">
 
-                <p>
-                    Create beautiful and responsive
-                    websites.
-                </p>
+                    <div>
 
-                <div class="course-info">
+                        <span class="eyebrow">
+                            YOUR LEARNING SPACE
+                        </span>
 
-                    <span>
-                        👥 184 students
-                    </span>
+                        <h1>
+                            Good morning,
+                            <span id="welcomeName">
+                                Ashraf
+                            </span> 👋
+                        </h1>
 
-                    <span>
-                        ⭐ 4.8
-                    </span>
+                        <p>
+                            Keep learning. You're doing great.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary"
+                        onclick="openSearch()"
+                    >
+                        + Find a Course
+                    </button>
 
                 </div>
 
-                <button
-                    onclick="openCourse('CSS Masterclass')"
-                    class="course-button"
-                >
-                    View Course
-                </button>
 
-            </div>
+                <!-- AD -->
 
-        </article>
+                <div class="ad-card">
 
+                    <div class="ad-label">
+                        SPONSORED
+                    </div>
 
-        <!-- JAVASCRIPT -->
+                    <div>
 
-        <article class="course">
+                        <h3>
+                            💻 Build your next digital skill
+                        </h3>
 
-            <div class="course-image js-course">
-                ⚡
-            </div>
+                        <p>
+                            Discover useful tools and learning
+                            resources from our partners.
+                        </p>
 
-            <div class="course-body">
+                    </div>
 
-                <span class="course-category">
-                    PROGRAMMING
-                </span>
-
-                <h3>
-                    JavaScript Basics
-                </h3>
-
-                <p>
-                    Make your websites interactive
-                    with JavaScript.
-                </p>
-
-                <div class="course-info">
-
-                    <span>
-                        👥 211 students
-                    </span>
-
-                    <span>
-                        ⭐ 4.9
-                    </span>
+                    <button>
+                        Explore →
+                    </button>
 
                 </div>
 
-                <button
-                    onclick="openCourse('JavaScript Basics')"
-                    class="course-button"
-                >
-                    View Course
-                </button>
 
-            </div>
+                <!-- STATS -->
 
-        </article>
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            📚
+                        </div>
+
+                        <div>
+                            <span>Courses</span>
+                            <strong>4</strong>
+                        </div>
+
+                    </div>
 
 
-        <!-- UI UX -->
+                    <div class="stat-card">
 
-        <article class="course">
+                        <div class="stat-icon blue">
+                            ⏱️
+                        </div>
 
-            <div class="course-image ui-course">
-                🧩
-            </div>
+                        <div>
+                            <span>Learning time</span>
+                            <strong>18h</strong>
+                        </div>
 
-            <div class="course-body">
+                    </div>
 
-                <span class="course-category">
-                    DESIGN
-                </span>
 
-                <h3>
-                    UI/UX Design
-                </h3>
+                    <div class="stat-card">
 
-                <p>
-                    Learn how to design useful
-                    digital products.
-                </p>
+                        <div class="stat-icon green">
+                            ✅
+                        </div>
 
-                <div class="course-info">
+                        <div>
+                            <span>Completed</span>
+                            <strong>12</strong>
+                        </div>
 
-                    <span>
-                        👥 156 students
-                    </span>
+                    </div>
 
-                    <span>
-                        ⭐ 5.0
-                    </span>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            🔥
+                        </div>
+
+                        <div>
+                            <span>Day streak</span>
+                            <strong>7</strong>
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <button
-                    onclick="openCourse('UI/UX Design')"
-                    class="course-button"
-                >
-                    View Course
-                </button>
+
+                <!-- CONTINUE -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            KEEP GOING
+                        </span>
+
+                        <h2>
+                            Continue learning
+                        </h2>
+                    </div>
+
+                    <button
+                        class="text-button"
+                        data-page="learning"
+                    >
+                        View all →
+                    </button>
+
+                </div>
+
+
+                <div class="learning-grid">
+
+                    <div class="learning-card">
+
+                        <div class="course-cover html">
+                            <span>HTML</span>
+                        </div>
+
+                        <div class="learning-body">
+
+                            <div class="course-tag">
+                                WEB DEVELOPMENT
+                            </div>
+
+                            <h3>
+                                HTML Fundamentals
+                            </h3>
+
+                            <p>
+                                12 of 18 lessons completed
+                            </p>
+
+                            <div class="progress">
+                                <div style="width:68%"></div>
+                            </div>
+
+                            <div class="progress-row">
+                                <span>68%</span>
+                                <button
+                                    onclick="openLesson('HTML Fundamentals')"
+                                >
+                                    Continue
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-card">
+
+                        <div class="course-cover javascript">
+                            <span>JS</span>
+                        </div>
+
+                        <div class="learning-body">
+
+                            <div class="course-tag">
+                                PROGRAMMING
+                            </div>
+
+                            <h3>
+                                JavaScript Basics
+                            </h3>
+
+                            <p>
+                                8 of 20 lessons completed
+                            </p>
+
+                            <div class="progress">
+                                <div style="width:42%"></div>
+                            </div>
+
+                            <div class="progress-row">
+                                <span>42%</span>
+                                <button
+                                    onclick="openLesson('JavaScript Basics')"
+                                >
+                                    Continue
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE CLASS -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            LIVE NOW
+                        </span>
+
+                        <h2>
+                            Upcoming class
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        🎥
+                    </div>
+
+                    <div class="live-info">
+
+                        <span class="live-badge">
+                            ● STARTING SOON
+                        </span>
+
+                        <h3>
+                            JavaScript Fundamentals
+                        </h3>
+
+                        <p>
+                            With Ashraf · Beginner · 4:00 PM
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary"
+                        onclick="joinClass()"
+                    >
+                        Join Class
+                    </button>
+
+                </div>
 
             </div>
 
-        </article>
 
-    </div>
+            <!-- =================================================
+                 MY LEARNING
+            ================================================= -->
 
-</section>
+            <div
+                class="page"
+                id="learning"
+            >
 
+                <div class="page-title">
 
-<!-- ================= CLASSES ================= -->
+                    <span class="eyebrow">
+                        YOUR COURSES
+                    </span>
 
-<section
-    id="classes"
-    class="section classes-section"
->
+                    <h1>
+                        My Learning
+                    </h1>
 
-    <div class="section-title">
+                    <p>
+                        Everything you're currently learning.
+                    </p>
 
-        <span>
-            LIVE LEARNING
-        </span>
-
-        <h2>
-            Join a live class.
-        </h2>
-
-        <p>
-            Attend classes with your instructor
-            and other students.
-        </p>
-
-    </div>
+                </div>
 
 
-    <div class="class-list">
+                <div class="course-list">
 
-        <article class="class-item">
+                    <div class="big-course">
 
-            <div class="class-time">
+                        <div class="course-cover html">
+                            HTML
+                        </div>
 
-                <strong>
-                    4:00
-                </strong>
+                        <div class="big-course-info">
 
-                <span>
-                    PM
-                </span>
+                            <span>
+                                WEB DEVELOPMENT
+                            </span>
+
+                            <h2>
+                                HTML Fundamentals
+                            </h2>
+
+                            <p>
+                                Learn HTML from the basics to
+                                building complete web pages.
+                            </p>
+
+                            <div class="progress">
+                                <div style="width:68%"></div>
+                            </div>
+
+                            <div class="course-bottom">
+
+                                <small>
+                                    68% completed
+                                </small>
+
+                                <button
+                                    class="primary"
+                                    onclick="openLesson('HTML Fundamentals')"
+                                >
+                                    Continue
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="big-course">
+
+                        <div class="course-cover css">
+                            CSS
+                        </div>
+
+                        <div class="big-course-info">
+
+                            <span>
+                                DESIGN
+                            </span>
+
+                            <h2>
+                                CSS Masterclass
+                            </h2>
+
+                            <p>
+                                Create modern responsive websites.
+                            </p>
+
+                            <div class="progress">
+                                <div style="width:31%"></div>
+                            </div>
+
+                            <div class="course-bottom">
+
+                                <small>
+                                    31% completed
+                                </small>
+
+                                <button
+                                    class="primary"
+                                    onclick="openLesson('CSS Masterclass')"
+                                >
+                                    Continue
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="class-info">
 
-                <span class="live-label">
-                    🔴 LIVE SOON
-                </span>
+            <!-- =================================================
+                 CLASSES
+            ================================================= -->
 
-                <h3>
-                    JavaScript Fundamentals
-                </h3>
+            <div
+                class="page"
+                id="classes"
+            >
 
-                <p>
-                    With Ashraf · Beginner
-                </p>
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        LIVE LEARNING
+                    </span>
+
+                    <h1>
+                        Live Classes
+                    </h1>
+
+                    <p>
+                        Attend classes with your instructors.
+                    </p>
+
+                </div>
+
+
+                <div class="class-grid">
+
+                    <div class="class-card live">
+
+                        <div class="class-top">
+
+                            <span class="live-badge">
+                                ● LIVE SOON
+                            </span>
+
+                            <span>
+                                4:00 PM
+                            </span>
+
+                        </div>
+
+                        <div class="class-big-icon">
+                            ⚡
+                        </div>
+
+                        <h2>
+                            JavaScript Fundamentals
+                        </h2>
+
+                        <p>
+                            Learn variables, functions and
+                            JavaScript basics.
+                        </p>
+
+                        <div class="teacher-line">
+
+                            <div class="avatar">
+                                A
+                            </div>
+
+                            <span>
+                                Ashraf · Instructor
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="primary full"
+                            onclick="joinClass()"
+                        >
+                            Join Class
+                        </button>
+
+                    </div>
+
+
+                    <div class="class-card">
+
+                        <div class="class-top">
+
+                            <span class="upcoming">
+                                UPCOMING
+                            </span>
+
+                            <span>
+                                6:30 PM
+                            </span>
+
+                        </div>
+
+                        <div class="class-big-icon">
+                            🎨
+                        </div>
+
+                        <h2>
+                            UI/UX Design Workshop
+                        </h2>
+
+                        <p>
+                            Learn how to design modern digital
+                            products.
+                        </p>
+
+                        <div class="teacher-line">
+
+                            <div class="avatar">
+                                A
+                            </div>
+
+                            <span>
+                                Ashraf · Instructor
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="secondary full"
+                            onclick="reminder()"
+                        >
+                            Set Reminder
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <button
-                onclick="joinClass('JavaScript Fundamentals')"
-                class="join-button"
+
+            <!-- =================================================
+                 ASSIGNMENTS
+            ================================================= -->
+
+            <div
+                class="page"
+                id="assignments"
             >
-                Join Class
-            </button>
 
-        </article>
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        YOUR WORK
+                    </span>
+
+                    <h1>
+                        Assignments
+                    </h1>
+
+                    <p>
+                        Complete your assignments before the deadline.
+                    </p>
+
+                </div>
 
 
-        <article class="class-item">
+                <div class="task-list">
 
-            <div class="class-time">
+                    <div class="task">
 
-                <strong>
-                    6:30
-                </strong>
+                        <div class="task-icon">
+                            HTML
+                        </div>
 
-                <span>
-                    PM
-                </span>
+                        <div class="task-info">
+
+                            <span>
+                                HTML Fundamentals
+                            </span>
+
+                            <h3>
+                                Build a personal webpage
+                            </h3>
+
+                            <small>
+                                Due tomorrow · 20 points
+                            </small>
+
+                        </div>
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+                        <button
+                            onclick="openAssignment('Build a personal webpage')"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+
+                    <div class="task">
+
+                        <div class="task-icon">
+                            JS
+                        </div>
+
+                        <div class="task-info">
+
+                            <span>
+                                JavaScript Basics
+                            </span>
+
+                            <h3>
+                                Create a calculator
+                            </h3>
+
+                            <small>
+                                Due Friday · 30 points
+                            </small>
+
+                        </div>
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+                        <button
+                            onclick="openAssignment('Create a calculator')"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+
+                    <div class="task completed">
+
+                        <div class="task-icon">
+                            UI
+                        </div>
+
+                        <div class="task-info">
+
+                            <span>
+                                UI/UX Design
+                            </span>
+
+                            <h3>
+                                Design a login screen
+                            </h3>
+
+                            <small>
+                                Submitted · 25 points
+                            </small>
+
+                        </div>
+
+                        <span class="status done">
+                            Submitted
+                        </span>
+
+                        <button>
+                            View
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="class-info">
 
-                <span class="upcoming-label">
-                    UPCOMING
-                </span>
+            <!-- =================================================
+                 TESTS
+            ================================================= -->
 
-                <h3>
-                    UI/UX Design Workshop
-                </h3>
+            <div
+                class="page"
+                id="tests"
+            >
 
-                <p>
-                    With Ashraf · Intermediate
-                </p>
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        ASSESSMENTS
+                    </span>
+
+                    <h1>
+                        Tests
+                    </h1>
+
+                    <p>
+                        Test what you've learned.
+                    </p>
+
+                </div>
+
+
+                <div class="test-grid">
+
+                    <div class="test-card">
+
+                        <span class="test-icon">
+                            🧪
+                        </span>
+
+                        <span class="course-tag">
+                            JAVASCRIPT
+                        </span>
+
+                        <h2>
+                            JavaScript Basics Test
+                        </h2>
+
+                        <p>
+                            20 questions · 30 minutes
+                        </p>
+
+                        <button
+                            class="primary full"
+                            onclick="startTest()"
+                        >
+                            Start Test
+                        </button>
+
+                    </div>
+
+
+                    <div class="test-card">
+
+                        <span class="test-icon">
+                            🌐
+                        </span>
+
+                        <span class="course-tag">
+                            HTML
+                        </span>
+
+                        <h2>
+                            HTML Fundamentals Test
+                        </h2>
+
+                        <p>
+                            15 questions · 20 minutes
+                        </p>
+
+                        <button
+                            class="secondary full"
+                            onclick="startTest()"
+                        >
+                            Start Test
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <button
-                onclick="joinClass('UI/UX Design Workshop')"
-                class="join-button"
-            >
-                Set Reminder
-            </button>
 
-        </article>
+            <!-- =================================================
+                 PROGRESS
+            ================================================= -->
 
-    </div>
-
-</section>
-
-
-<!-- ================= TEACHERS ================= -->
-
-<section
-    id="teachers"
-    class="section"
->
-
-    <div class="section-title">
-
-        <span>
-            OUR INSTRUCTORS
-        </span>
-
-        <h2>
-            Meet the teachers.
-        </h2>
-
-    </div>
-
-
-    <div class="teacher-grid">
-
-
-        <article class="teacher">
-
-            <div class="teacher-picture teacher-one">
-                A
-            </div>
-
-            <h3>
-                Ashraf
-                <span>✓</span>
-            </h3>
-
-            <p>
-                HTML · CSS · JavaScript · UI/UX
-            </p>
-
-        </article>
-
-
-        <article class="teacher">
-
-            <div class="teacher-picture teacher-two">
-                M
-            </div>
-
-            <h3>
-                Musa Bello
-            </h3>
-
-            <p>
-                Game Development
-            </p>
-
-        </article>
-
-
-        <article class="teacher">
-
-            <div class="teacher-picture teacher-three">
-                S
-            </div>
-
-            <h3>
-                Sarah James
-            </h3>
-
-            <p>
-                Graphic Design
-            </p>
-
-        </article>
-
-
-        <article class="teacher">
-
-            <div class="teacher-picture teacher-four">
-                D
-            </div>
-
-            <h3>
-                Daniel Smith
-            </h3>
-
-            <p>
-                Python & AI
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= TEACHER CTA ================= -->
-
-<section class="teacher-cta">
-
-    <div>
-
-        <span>
-            FOR INSTRUCTORS
-        </span>
-
-        <h2>
-            Have a skill?
-            Teach it on Lerno.
-        </h2>
-
-        <p>
-            Create courses, post classes, upload
-            assignments and connect with students.
-        </p>
-
-    </div>
-
-    <button
-        onclick="openTeacherSignup()"
-        class="primary-button"
-    >
-        Become an Instructor →
-    </button>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section
-    id="about"
-    class="section about-section"
->
-
-    <div class="section-title">
-
-        <span>
-            ABOUT LERNO
-        </span>
-
-        <h2>
-            Learn. Build. Become.
-        </h2>
-
-        <p>
-            Lerno is designed to bring students and
-            instructors together in one modern learning
-            platform.
-        </p>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="footer-logo">
-
-        <span>L</span>
-        Lerno
-
-    </div>
-
-    <p>
-        Learn. Build. Become.
-    </p>
-
-    <p>
-        © 2026 Lerno
-    </p>
-
-</footer>
-
-
-<!-- ================= LOGIN MODAL ================= -->
-
-<div
-    id="loginModal"
-    class="modal"
->
-
-    <div class="modal-box">
-
-        <button
-            class="close-button"
-            onclick="closeLogin()"
-        >
-            ×
-        </button>
-
-        <div class="modal-header">
-
-            <span class="modal-icon">
-                🔐
-            </span>
-
-            <h2>
-                Welcome back
-            </h2>
-
-            <p>
-                Login to your Lerno account.
-            </p>
-
-        </div>
-
-
-        <div class="login-tabs">
-
-            <button
-                id="studentTab"
-                class="selected"
-                onclick="showStudentLogin()"
-            >
-                Student
-            </button>
-
-            <button
-                id="teacherTab"
-                onclick="showTeacherLogin()"
-            >
-                Teacher
-            </button>
-
-        </div>
-
-
-        <!-- STUDENT LOGIN -->
-
-        <div
-            id="studentLogin"
-            class="login-form"
-        >
-
-            <input
-                id="studentLoginName"
-                type="text"
-                placeholder="Your name"
+            <div
+                class="page"
+                id="progress"
             >
 
-            <input
-                type="password"
-                placeholder="Password"
-            >
+                <div class="page-title">
 
-            <button
-                onclick="studentLogin()"
-                class="primary-button full"
-            >
-                Login as Student
-            </button>
+                    <span class="eyebrow">
+                        YOUR PERFORMANCE
+                    </span>
 
-        </div>
+                    <h1>
+                        Progress
+                    </h1>
+
+                    <p>
+                        See how you're improving.
+                    </p>
+
+                </div>
 
 
-        <!-- TEACHER LOGIN -->
+                <div class="progress-dashboard">
 
-        <div
-            id="teacherLogin"
-            class="login-form hidden"
-        >
+                    <div class="score-card">
 
-            <input
-                id="teacherLoginName"
-                type="text"
-                placeholder="Teacher name"
-            >
+                        <span>
+                            Overall Progress
+                        </span>
 
-            <input
-                id="teacherLoginPassword"
-                type="password"
-                placeholder="Teacher password"
-            >
+                        <strong>
+                            64%
+                        </strong>
 
-            <button
-                onclick="teacherLogin()"
-                class="primary-button full"
-            >
-                Login as Teacher
-            </button>
+                        <div class="circle-progress">
+                            <div>
+                                64%
+                            </div>
+                        </div>
 
-            <div class="demo-box">
+                    </div>
 
-                <strong>
-                    Demo Teacher
-                </strong>
 
-                <br>
+                    <div class="performance-card">
 
-                Name:
-                <b>Ashraf</b>
+                        <h2>
+                            Performance
+                        </h2>
 
-                <br>
+                        <div class="performance-row">
 
-                Password:
-                <b>12345</b>
+                            <span>
+                                HTML
+                            </span>
+
+                            <div class="bar">
+                                <div style="width:82%"></div>
+                            </div>
+
+                            <b>
+                                82%
+                            </b>
+
+                        </div>
+
+
+                        <div class="performance-row">
+
+                            <span>
+                                CSS
+                            </span>
+
+                            <div class="bar">
+                                <div style="width:74%"></div>
+                            </div>
+
+                            <b>
+                                74%
+                            </b>
+
+                        </div>
+
+
+                        <div class="performance-row">
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                            <div class="bar">
+                                <div style="width:58%"></div>
+                            </div>
+
+                            <b>
+                                58%
+                            </b>
+
+                        </div>
+
+
+                        <div class="performance-row">
+
+                            <span>
+                                UI/UX
+                            </span>
+
+                            <div class="bar">
+                                <div style="width:76%"></div>
+                            </div>
+
+                            <b>
+                                76%
+                            </b>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
 
-    </div>
+            <!-- =================================================
+                 NOTIFICATIONS
+            ================================================= -->
+
+            <div
+                class="page"
+                id="notifications"
+            >
+
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        UPDATES
+                    </span>
+
+                    <h1>
+                        Notifications
+                    </h1>
+
+                </div>
+
+
+                <div class="notification-list">
+
+                    <div class="notification unread">
+
+                        <span>🎥</span>
+
+                        <div>
+                            <strong>
+                                JavaScript class starts soon
+                            </strong>
+
+                            <p>
+                                Your class begins at 4:00 PM.
+                            </p>
+
+                            <small>
+                                10 minutes ago
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="notification unread">
+
+                        <span>📝</span>
+
+                        <div>
+                            <strong>
+                                Assignment deadline
+                            </strong>
+
+                            <p>
+                                Your HTML assignment is due tomorrow.
+                            </p>
+
+                            <small>
+                                1 hour ago
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="notification">
+
+                        <span>🎉</span>
+
+                        <div>
+                            <strong>
+                                You completed a lesson!
+                            </strong>
+
+                            <p>
+                                Keep your learning streak alive.
+                            </p>
+
+                            <small>
+                                Yesterday
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================= -->
+
+            <div
+                class="page"
+                id="profile"
+            >
+
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        YOUR ACCOUNT
+                    </span>
+
+                    <h1>
+                        Profile
+                    </h1>
+
+                </div>
+
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <h2 id="profileName">
+                        Ashraf
+                    </h2>
+
+                    <p>
+                        Student · Web Development
+                    </p>
+
+                    <div class="profile-stats">
+
+                        <div>
+                            <strong>4</strong>
+                            <span>Courses</span>
+                        </div>
+
+                        <div>
+                            <strong>12</strong>
+                            <span>Lessons</span>
+                        </div>
+
+                        <div>
+                            <strong>7</strong>
+                            <span>Day streak</span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="secondary"
+                        onclick="editProfile()"
+                    >
+                        Edit Profile
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================= -->
+
+            <div
+                class="page"
+                id="settings"
+            >
+
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        PREFERENCES
+                    </span>
+
+                    <h1>
+                        Settings
+                    </h1>
+
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="setting">
+
+                        <div>
+                            <strong>
+                                Dark Mode
+                            </strong>
+
+                            <p>
+                                Use Lerno's dark interface.
+                            </p>
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="darkToggle"
+                                checked
+                            >
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting">
+
+                        <div>
+                            <strong>
+                                Class Notifications
+                            </strong>
+
+                            <p>
+                                Get reminders before live classes.
+                            </p>
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting">
+
+                        <div>
+                            <strong>
+                                Assignment Notifications
+                            </strong>
+
+                            <p>
+                                Receive deadline reminders.
+                            </p>
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TEACHER STUDIO
+            ================================================= -->
+
+            <div
+                class="page"
+                id="teacher"
+            >
+
+                <div class="teacher-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            INSTRUCTOR AREA
+                        </span>
+
+                        <h1>
+                            Teacher Studio
+                        </h1>
+
+                        <p>
+                            Manage your courses, classes and students.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary"
+                        onclick="createCourse()"
+                    >
+                        + Create Course
+                    </button>
+
+                </div>
+
+
+                <div class="teacher-stats">
+
+                    <div>
+                        <span>Students</span>
+                        <strong>248</strong>
+                    </div>
+
+                    <div>
+                        <span>Assignments</span>
+                        <strong>183</strong>
+                    </div>
+
+                    <div>
+                        <span>Average Score</span>
+                        <strong>84%</strong>
+                    </div>
+
+                    <div>
+                        <span>Attendance</span>
+                        <strong>87%</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="teacher-tools">
+
+                    <button onclick="createCourse()">
+                        📚
+                        <strong>
+                            Create Course
+                        </strong>
+                        <small>
+                            Publish a new course
+                        </small>
+                    </button>
+
+                    <button onclick="uploadVideo()">
+                        🎥
+                        <strong>
+                            Upload Class
+                        </strong>
+                        <small>
+                            Add a video lesson
+                        </small>
+                    </button>
+
+                    <button onclick="createAssignment()">
+                        📝
+                        <strong>
+                            Assignment
+                        </strong>
+                        <small>
+                            Give students work
+                        </small>
+                    </button>
+
+                    <button onclick="createMeeting()">
+                        💻
+                        <strong>
+                            Meeting
+                        </strong>
+                        <small>
+                            Schedule a live class
+                        </small>
+                    </button>
+
+                </div>
+
+
+                <div class="analytics">
+
+                    <div class="analytics-card">
+
+                        <div class="section-heading">
+
+                            <h2>
+                                Student Activity
+                            </h2>
+
+                        </div>
+
+                        <div class="activity">
+
+                            <div>
+                                <span>Attentive</span>
+
+                                <div class="bar">
+                                    <div style="width:87%"></div>
+                                </div>
+
+                                <b>87%</b>
+                            </div>
+
+
+                            <div>
+                                <span>Assignments Submitted</span>
+
+                                <div class="bar">
+                                    <div style="width:79%"></div>
+                                </div>
+
+                                <b>79%</b>
+                            </div>
+
+
+                            <div>
+                                <span>Tests Completed</span>
+
+                                <div class="bar">
+                                    <div style="width:91%"></div>
+                                </div>
+
+                                <b>91%</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-card">
+
+                        <h2>
+                            AI Assistance
+                        </h2>
+
+                        <p>
+                            Lerno can later provide AI-assistance
+                            indicators for submitted work.
+                        </p>
+
+                        <div class="ai-notice">
+                            🤖
+                            <div>
+                                <strong>
+                                    Detection should be a signal,
+                                    not proof.
+                                </strong>
+
+                                <small>
+                                    Teachers should review work
+                                    before making decisions.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
 
-<!-- ================= SIGNUP MODAL ================= -->
+<!-- ================= MODAL ================= -->
 
 <div
-    id="signupModal"
     class="modal"
+    id="modal"
 >
 
     <div class="modal-box">
 
         <button
-            class="close-button"
-            onclick="closeSignup()"
+            class="modal-close"
+            onclick="closeModal()"
         >
             ×
         </button>
 
-        <div class="modal-header">
-
-            <span class="modal-icon">
-                🚀
-            </span>
-
-            <h2>
-                Join Lerno
-            </h2>
-
-            <p>
-                Create your learning account.
-            </p>
-
-        </div>
-
-
-        <input
-            id="signupName"
-            type="text"
-            placeholder="Full name"
-        >
-
-
-        <div class="account-type">
-
-            <button
-                id="studentType"
-                class="selected"
-                onclick="selectAccountType('student')"
-            >
-                🎓 Student
-            </button>
-
-            <button
-                id="teacherType"
-                onclick="selectAccountType('teacher')"
-            >
-                👨‍🏫 Teacher
-            </button>
-
-        </div>
-
-
-        <!-- STUDENT OPTIONS -->
-
-        <div
-            id="studentOptions"
-        >
-
-            <h4>
-                What are you learning for?
-            </h4>
-
-            <div class="goal-options">
-
-                <label>
-                    <input
-                        type="radio"
-                        name="goal"
-                        value="career"
-                        checked
-                    >
-                    💼 Career
-                </label>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="goal"
-                        value="hobby"
-                    >
-                    🎨 Hobby
-                </label>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="goal"
-                        value="school"
-                    >
-                    🎓 School
-                </label>
-
-            </div>
-
-        </div>
-
-
-        <!-- TEACHER OPTIONS -->
-
-        <div
-            id="teacherOptions"
-            class="hidden"
-        >
-
-            <h4>
-                Instructor information
-            </h4>
-
-            <input
-                id="teacherSubject"
-                type="text"
-                placeholder="What do you teach?"
-            >
-
-            <textarea
-                id="teacherDescription"
-                placeholder="Tell students about yourself..."
-            ></textarea>
-
-            <div class="demo-box">
-
-                Teacher applications are reviewed
-                before verification.
-
-            </div>
-
-        </div>
-
-
-        <input
-            id="signupPassword"
-            type="password"
-            placeholder="Create password"
-        >
-
-
-        <button
-            onclick="createAccount()"
-            class="primary-button full"
-        >
-            Create Account
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= COURSE MODAL ================= -->
-
-<div
-    id="courseModal"
-    class="modal"
->
-
-    <div class="modal-box">
-
-        <button
-            class="close-button"
-            onclick="closeCourse()"
-        >
-            ×
-        </button>
-
-        <div class="modal-header">
-
-            <span
-                id="courseModalIcon"
-                class="modal-icon"
-            >
-                📚
-            </span>
-
-            <h2 id="courseModalTitle">
-                Course
-            </h2>
-
-            <p>
-                Learn with Lerno.
-            </p>
-
-        </div>
-
-        <div class="course-preview">
-
-            <p>
-                🎥 Video lessons
-            </p>
-
-            <p>
-                📝 Assignments
-            </p>
-
-            <p>
-                🧪 Tests
-            </p>
-
-            <p>
-                👨‍🏫 Instructor classes
-            </p>
-
-            <p>
-                📊 Progress tracking
-            </p>
-
-        </div>
-
-        <button
-            onclick="enrollCourse()"
-            class="primary-button full"
-        >
-            Enroll in Course
-        </button>
+        <div id="modalContent"></div>
 
     </div>
 
