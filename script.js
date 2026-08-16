@@ -1,1049 +1,752 @@
-/* =========================================================
-   LEARNOVA
+/* =====================================================
+   LERNO V1
    MAIN JAVASCRIPT
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const body = document.body;
-
-    const themeBtn = document.getElementById("themeBtn");
-
-    const mobileMenuBtn =
-        document.getElementById("mobileMenuBtn");
-
-    const mobileNav =
-        document.getElementById("mobileNav");
-
-    const notificationBtn =
-        document.getElementById("notificationBtn");
-
-    const notificationPanel =
-        document.getElementById("notificationPanel");
-
-    const closeNotifications =
-        document.getElementById("closeNotifications");
-
-    const courseSearch =
-        document.getElementById("courseSearch");
-
-    const coursesGrid =
-        document.getElementById("coursesGrid");
-
-    const emptyState =
-        document.getElementById("emptyState");
-
-    const courseModal =
-        document.getElementById("courseModal");
-
-    const courseModalClose =
-        document.getElementById("courseModalClose");
-
-    const modalCourseTitle =
-        document.getElementById("modalCourseTitle");
-
-    const startCourseBtn =
-        document.getElementById("startCourseBtn");
-
-    const loginModal =
-        document.getElementById("loginModal");
-
-    const loginBtn =
-        document.getElementById("loginBtn");
-
-    const signupBtn =
-        document.getElementById("signupBtn");
-
-    const mobileSignup =
-        document.getElementById("mobileSignup");
-
-    const authClose =
-        document.querySelector(".auth-close");
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const toast =
-        document.getElementById("toast");
-
-    const toastMessage =
-        document.getElementById("toastMessage");
-
-    const chatForm =
-        document.getElementById("chatForm");
-
-    const chatInput =
-        document.getElementById("chatInput");
-
-    const chatMessages =
-        document.getElementById("chatMessages");
-
-    const openAiBtn =
-        document.getElementById("openAiBtn");
-
-    const ctaBtn =
-        document.getElementById("ctaBtn");
+===================================================== */
 
 
-    /* =====================================================
-       THEME
-    ===================================================== */
+/* =====================================================
+   THEME
+===================================================== */
 
-    const savedTheme =
-        localStorage.getItem("learnova-theme");
+function toggleTheme() {
 
-    if (savedTheme === "dark") {
+    document.body.classList.toggle("light");
 
-        body.classList.add("dark");
+    const theme =
+        document.body.classList.contains("light")
+            ? "light"
+            : "dark";
 
-        themeBtn.innerHTML =
-            '<i class="fa-solid fa-sun"></i>';
+    localStorage.setItem(
+        "lernoTheme",
+        theme
+    );
 
-    }
+}
 
 
-    themeBtn.addEventListener("click", () => {
+/* Load saved theme */
 
-        body.classList.toggle("dark");
+if (
+    localStorage.getItem("lernoTheme") === "light"
+) {
 
-        const isDark =
-            body.classList.contains("dark");
+    document.body.classList.add("light");
 
-        localStorage.setItem(
-            "learnova-theme",
-            isDark ? "dark" : "light"
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+    menu.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+    menu.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOGIN MODAL
+===================================================== */
+
+function openLogin() {
+
+    document
+        .getElementById("loginModal")
+        .classList.add("show");
+
+}
+
+
+function closeLogin() {
+
+    document
+        .getElementById("loginModal")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   SIGNUP MODAL
+===================================================== */
+
+function openSignup() {
+
+    document
+        .getElementById("signupModal")
+        .classList.add("show");
+
+}
+
+
+function closeSignup() {
+
+    document
+        .getElementById("signupModal")
+        .classList.remove("show");
+
+}
+
+
+function openTeacherSignup() {
+
+    openSignup();
+
+    selectAccountType("teacher");
+
+}
+
+
+/* =====================================================
+   LOGIN TABS
+===================================================== */
+
+function showStudentLogin() {
+
+    document
+        .getElementById("studentLogin")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("teacherLogin")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("studentTab")
+        .classList.add("selected");
+
+    document
+        .getElementById("teacherTab")
+        .classList.remove("selected");
+
+}
+
+
+function showTeacherLogin() {
+
+    document
+        .getElementById("studentLogin")
+        .classList.add("hidden");
+
+    document
+        .getElementById("teacherLogin")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("teacherTab")
+        .classList.add("selected");
+
+    document
+        .getElementById("studentTab")
+        .classList.remove("selected");
+
+}
+
+
+/* =====================================================
+   ACCOUNT TYPE
+===================================================== */
+
+function selectAccountType(type) {
+
+    const student =
+        document.getElementById(
+            "studentType"
         );
 
-        themeBtn.innerHTML = isDark
-            ? '<i class="fa-solid fa-sun"></i>'
-            : '<i class="fa-solid fa-moon"></i>';
-
-        showToast(
-            isDark
-                ? "Dark mode enabled"
-                : "Light mode enabled"
+    const teacher =
+        document.getElementById(
+            "teacherType"
         );
 
-    });
-
-
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
-
-    mobileMenuBtn.addEventListener("click", () => {
-
-        mobileNav.classList.toggle("active");
-
-        const opened =
-            mobileNav.classList.contains("active");
-
-        mobileMenuBtn.innerHTML = opened
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
-
-    });
-
-
-    document.querySelectorAll(".mobile-nav a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileNav.classList.remove("active");
-
-            mobileMenuBtn.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
-        });
-
-    });
-
-
-    /* =====================================================
-       NAV ACTIVE STATE
-    ===================================================== */
-
-    const navLinks =
-        document.querySelectorAll(".nav-link");
-
-    navLinks.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navLinks.forEach(item =>
-                item.classList.remove("active")
-            );
-
-            link.classList.add("active");
-
-        });
-
-    });
-
-
-    /* =====================================================
-       NOTIFICATIONS
-    ===================================================== */
-
-    notificationBtn.addEventListener("click", event => {
-
-        event.stopPropagation();
-
-        notificationPanel.classList.toggle("active");
-
-    });
-
-
-    closeNotifications.addEventListener("click", () => {
-
-        notificationPanel.classList.remove("active");
-
-    });
-
-
-    document.addEventListener("click", event => {
-
-        if (
-            notificationPanel.classList.contains("active") &&
-            !notificationPanel.contains(event.target) &&
-            !notificationBtn.contains(event.target)
-        ) {
-
-            notificationPanel.classList.remove("active");
-
-        }
-
-    });
-
-
-    /* =====================================================
-       COURSE FILTER
-    ===================================================== */
-
-    const filterButtons =
-        document.querySelectorAll(".filter-btn");
-
-    const courseCards =
-        document.querySelectorAll(".course-card");
-
-
-    let currentFilter = "All";
-
-
-    function filterCourses() {
-
-        const searchTerm =
-            courseSearch.value
-                .trim()
-                .toLowerCase();
-
-        let visibleCourses = 0;
-
-
-        courseCards.forEach(card => {
-
-            const category =
-                card.dataset.category;
-
-            const title =
-                card.dataset.title.toLowerCase();
-
-            const description =
-                card.querySelector(".course-description")
-                    ?.textContent
-                    .toLowerCase() || "";
-
-            const matchesCategory =
-                currentFilter === "All" ||
-                category === currentFilter;
-
-            const matchesSearch =
-                title.includes(searchTerm) ||
-                category.toLowerCase().includes(searchTerm) ||
-                description.includes(searchTerm);
-
-
-            if (
-                matchesCategory &&
-                matchesSearch
-            ) {
-
-                card.style.display = "";
-
-                visibleCourses++;
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-
-        if (visibleCourses === 0) {
-
-            emptyState.classList.add("show");
-
-        } else {
-
-            emptyState.classList.remove("show");
-
-        }
-
-    }
-
-
-    filterButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            filterButtons.forEach(btn =>
-                btn.classList.remove("active")
-            );
-
-            button.classList.add("active");
-
-            currentFilter =
-                button.dataset.filter;
-
-            filterCourses();
-
-        });
-
-    });
-
-
-    courseSearch.addEventListener(
-        "input",
-        filterCourses
-    );
-
-
-    /* =====================================================
-       CATEGORY CARDS
-    ===================================================== */
-
-    document
-        .querySelectorAll(".category-card")
-        .forEach(card => {
-
-            card.addEventListener("click", () => {
-
-                const category =
-                    card.dataset.category;
-
-                const matchingFilter =
-                    [...filterButtons].find(
-                        button =>
-                            button.dataset.filter === category
-                    );
-
-
-                if (matchingFilter) {
-
-                    filterButtons.forEach(btn =>
-                        btn.classList.remove("active")
-                    );
-
-                    matchingFilter.classList.add("active");
-
-                    currentFilter = category;
-
-                    filterCourses();
-
-                }
-
-                document
-                    .getElementById("courses")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-            });
-
-        });
-
-
-    /* =====================================================
-       FAVORITES
-    ===================================================== */
-
-    document
-        .querySelectorAll(".favorite-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", event => {
-
-                event.stopPropagation();
-
-                button.classList.toggle("favorited");
-
-                const icon =
-                    button.querySelector("i");
-
-                const favorite =
-                    button.classList.contains("favorited");
-
-
-                icon.className = favorite
-                    ? "fa-solid fa-heart"
-                    : "fa-regular fa-heart";
-
-
-                showToast(
-                    favorite
-                        ? "Course added to favorites ❤️"
-                        : "Course removed from favorites"
-                );
-
-            });
-
-        });
-
-
-    /* =====================================================
-       COURSE MODAL
-    ===================================================== */
-
-    document
-        .querySelectorAll(".course-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                const course =
-                    button.dataset.course;
-
-                modalCourseTitle.textContent =
-                    course;
-
-                courseModal.classList.add("active");
-
-                document.body.style.overflow =
-                    "hidden";
-
-            });
-
-        });
-
-
-    courseModalClose.addEventListener(
-        "click",
-        closeCourseModal
-    );
-
-
-    courseModal.addEventListener(
-        "click",
-        event => {
-
-            if (event.target === courseModal) {
-
-                closeCourseModal();
-
-            }
-
-        }
-    );
-
-
-    function closeCourseModal() {
-
-        courseModal.classList.remove("active");
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    startCourseBtn.addEventListener("click", () => {
-
-        closeCourseModal();
-
-        showToast(
-            "Course started! Your progress has been saved."
+    const studentOptions =
+        document.getElementById(
+            "studentOptions"
         );
 
-    });
+    const teacherOptions =
+        document.getElementById(
+            "teacherOptions"
+        );
 
 
-    /* =====================================================
-       LOGIN MODAL
-    ===================================================== */
+    if (type === "student") {
 
-    function openLoginModal() {
+        student.classList.add("selected");
 
-        loginModal.classList.add("active");
+        teacher.classList.remove("selected");
 
-        document.body.style.overflow = "hidden";
+        studentOptions.classList.remove("hidden");
 
-    }
-
-
-    function closeLoginModal() {
-
-        loginModal.classList.remove("active");
-
-        document.body.style.overflow = "";
+        teacherOptions.classList.add("hidden");
 
     }
 
 
-    loginBtn.addEventListener(
-        "click",
-        openLoginModal
+    if (type === "teacher") {
+
+        teacher.classList.add("selected");
+
+        student.classList.remove("selected");
+
+        teacherOptions.classList.remove("hidden");
+
+        studentOptions.classList.add("hidden");
+
+    }
+
+}
+
+
+/* =====================================================
+   STUDENT LOGIN
+===================================================== */
+
+function studentLogin() {
+
+    const name =
+        document
+            .getElementById(
+                "studentLoginName"
+            )
+            .value
+            .trim();
+
+
+    if (!name) {
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "lernoUser",
+        JSON.stringify({
+            name: name,
+            role: "student"
+        })
     );
 
 
-    signupBtn.addEventListener(
-        "click",
-        openLoginModal
+    closeLogin();
+
+
+    alert(
+        "Welcome to Lerno, " +
+        name +
+        "! 🎓"
     );
 
-
-    mobileSignup.addEventListener("click", () => {
-
-        mobileNav.classList.remove("active");
-
-        mobileMenuBtn.innerHTML =
-            '<i class="fa-solid fa-bars"></i>';
-
-        openLoginModal();
-
-    });
+}
 
 
-    authClose.addEventListener(
-        "click",
-        closeLoginModal
-    );
+/* =====================================================
+   TEACHER LOGIN
+===================================================== */
+
+function teacherLogin() {
+
+    const name =
+        document
+            .getElementById(
+                "teacherLoginName"
+            )
+            .value
+            .trim();
 
 
-    loginModal.addEventListener(
-        "click",
-        event => {
-
-            if (event.target === loginModal) {
-
-                closeLoginModal();
-
-            }
-
-        }
-    );
+    const password =
+        document
+            .getElementById(
+                "teacherLoginPassword"
+            )
+            .value;
 
 
-    loginForm.addEventListener(
-        "submit",
-        event => {
+    /*
+        V1 DEMO LOGIN
 
-            event.preventDefault();
+        Teacher:
+        Ashraf
 
-            closeLoginModal();
-
-            showToast(
-                "Demo login successful! Connect your backend next."
-            );
-
-        }
-    );
+        Password:
+        12345
+    */
 
 
-    /* =====================================================
-       LIVE CLASS BUTTONS
-    ===================================================== */
-
-    document
-        .querySelectorAll(".join-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                showToast(
-                    "Opening live classroom..."
-                );
-
-            });
-
-        });
-
-
-    document
-        .querySelectorAll(".reminder-btn")
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                button.textContent =
-                    "Reminder Set ✓";
-
-                button.style.background =
-                    "rgba(0,200,150,.1)";
-
-                button.style.color =
-                    "#00a97f";
-
-                showToast(
-                    "Class reminder has been set."
-                );
-
-            });
-
-        });
-
-
-    /* =====================================================
-       CONTINUE LEARNING
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".continue-btn, .primary-small-btn"
-        )
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                showToast(
-                    "Opening your lesson..."
-                );
-
-            });
-
-        });
-
-
-    /* =====================================================
-       AI COACH
-    ===================================================== */
-
-    const aiResponses = [
-
-        "Absolutely! Let's break this topic into simple steps so it's easier to understand. 🧠",
-
-        "Great question! Think of it like building with LEGO. Each concept connects to the next one. 🧱",
-
-        "Here's a simple explanation: start with the basic idea, then gradually add the advanced concepts. 🚀",
-
-        "Nice! I recommend practicing this concept with a small project. That's usually the fastest way to understand it. 💡",
-
-        "Let's turn that into a learning challenge. I'll help you work through it step by step. 🎯"
-
-    ];
-
-
-    function addChatMessage(
-        text,
-        type = "ai"
+    if (
+        name.toLowerCase() === "ashraf" &&
+        password === "12345"
     ) {
 
-        const message =
-            document.createElement("div");
+        localStorage.setItem(
+            "lernoUser",
+            JSON.stringify({
 
-        message.className =
-            `message ${type}-message`;
+                name: "Ashraf",
 
+                role: "teacher",
 
-        if (type === "ai") {
+                verified: true
 
-            message.innerHTML = `
-
-                <div class="message-avatar">
-                    <i class="fa-solid fa-sparkles"></i>
-                </div>
-
-                <div class="message-bubble">
-                    ${escapeHTML(text)}
-                </div>
-
-            `;
-
-        } else {
-
-            message.innerHTML = `
-
-                <div class="message-bubble">
-                    ${escapeHTML(text)}
-                </div>
-
-            `;
-
-        }
+            })
+        );
 
 
-        chatMessages.appendChild(message);
+        closeLogin();
 
-        chatMessages.scrollTop =
-            chatMessages.scrollHeight;
+
+        alert(
+            "Teacher verified! 👨‍🏫\n\n" +
+            "Welcome to your Teacher Studio."
+        );
+
+
+        /*
+            Later this button will open:
+
+            teacher.html
+
+            For V1 we keep everything
+            inside the prototype.
+        */
+
+    }
+
+    else {
+
+        alert(
+            "Invalid teacher login.\n\n" +
+            "Demo:\n" +
+            "Name: Ashraf\n" +
+            "Password: 12345"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE ACCOUNT
+===================================================== */
+
+function createAccount() {
+
+    const name =
+        document
+            .getElementById(
+                "signupName"
+            )
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById(
+                "signupPassword"
+            )
+            .value;
+
+
+    if (!name) {
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
 
     }
 
 
-    function aiReply() {
+    if (!password) {
 
-        const random =
-            aiResponses[
-                Math.floor(
-                    Math.random() *
-                    aiResponses.length
-                )
-            ];
+        alert(
+            "Please create a password."
+        );
 
-
-        setTimeout(() => {
-
-            addChatMessage(random, "ai");
-
-        }, 650);
+        return;
 
     }
 
 
-    chatForm.addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-            const message =
-                chatInput.value.trim();
-
-
-            if (!message) return;
-
-
-            addChatMessage(
-                message,
-                "user"
+    const teacherButton =
+        document
+            .getElementById(
+                "teacherType"
             );
 
-            chatInput.value = "";
 
-            aiReply();
+    const isTeacher =
+        teacherButton.classList.contains(
+            "selected"
+        );
+
+
+    /* ================= TEACHER ================= */
+
+    if (isTeacher) {
+
+        const subject =
+            document
+                .getElementById(
+                    "teacherSubject"
+                )
+                .value
+                .trim();
+
+
+        const description =
+            document
+                .getElementById(
+                    "teacherDescription"
+                )
+                .value
+                .trim();
+
+
+        if (!subject) {
+
+            alert(
+                "Please enter what you teach."
+            );
+
+            return;
 
         }
+
+
+        const application = {
+
+            name: name,
+
+            subject: subject,
+
+            description: description,
+
+            status: "pending",
+
+            date:
+                new Date()
+                    .toISOString()
+
+        };
+
+
+        localStorage.setItem(
+            "lernoTeacherApplication",
+            JSON.stringify(application)
+        );
+
+
+        closeSignup();
+
+
+        alert(
+            "Teacher application submitted! 👨‍🏫\n\n" +
+            "Your subject: " +
+            subject +
+            "\n\n" +
+            "Once verified, your subject can become a Lerno course."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= STUDENT ================= */
+
+    const goal =
+        document.querySelector(
+            'input[name="goal"]:checked'
+        );
+
+
+    const selectedGoal =
+        goal
+            ? goal.value
+            : "career";
+
+
+    const user = {
+
+        name: name,
+
+        password: password,
+
+        role: "student",
+
+        goal: selectedGoal
+
+    };
+
+
+    localStorage.setItem(
+        "lernoUser",
+        JSON.stringify(user)
     );
+
+
+    closeSignup();
+
+
+    alert(
+        "Account created! 🎉\n\n" +
+        "Learning goal: " +
+        selectedGoal
+    );
+
+}
+
+
+/* =====================================================
+   LEARNING GOAL
+===================================================== */
+
+function selectGoal(goal) {
+
+    localStorage.setItem(
+        "lernoGoal",
+        goal
+    );
+
+
+    const names = {
+
+        career: "Career",
+
+        hobby: "Hobby",
+
+        school: "School"
+
+    };
+
+
+    alert(
+        "Great choice! 🎓\n\n" +
+        "You selected: " +
+        names[goal]
+    );
+
+
+    openSignup();
+
+}
+
+
+/* =====================================================
+   COURSE
+===================================================== */
+
+function openCourse(courseName) {
+
+    const modal =
+        document.getElementById(
+            "courseModal"
+        );
 
 
     document
-        .querySelectorAll(".quick-prompts button")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const prompt =
-                        button.dataset.prompt;
-
-                    addChatMessage(
-                        prompt,
-                        "user"
-                    );
-
-                    aiReply();
-
-                }
-            );
-
-        });
+        .getElementById(
+            "courseModalTitle"
+        )
+        .textContent = courseName;
 
 
-    openAiBtn.addEventListener(
-        "click",
-        () => {
+    const icons = {
 
-            document
-                .getElementById("ai-coach")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+        "HTML Fundamentals": "🌐",
 
-            setTimeout(() => {
+        "CSS Masterclass": "🎨",
 
-                chatInput.focus();
+        "JavaScript Basics": "⚡",
 
-            }, 700);
+        "UI/UX Design": "🧩"
 
-        }
-    );
+    };
 
 
-    /* =====================================================
-       CTA
-    ===================================================== */
-
-    ctaBtn.addEventListener(
-        "click",
-        () => {
-
-            openLoginModal();
-
-        }
-    );
+    document
+        .getElementById(
+            "courseModalIcon"
+        )
+        .textContent =
+        icons[courseName] || "📚";
 
 
-    /* =====================================================
-       STATS COUNTER
-    ===================================================== */
+    modal.classList.add("show");
 
-    const counters =
-        document.querySelectorAll(
-            "[data-count]"
+}
+
+
+function closeCourse() {
+
+    document
+        .getElementById(
+            "courseModal"
+        )
+        .classList.remove("show");
+
+}
+
+
+function enrollCourse() {
+
+    const course =
+        document
+            .getElementById(
+                "courseModalTitle"
+            )
+            .textContent;
+
+
+    let courses =
+        JSON.parse(
+            localStorage.getItem(
+                "lernoCourses"
+            ) || "[]"
         );
 
 
-    let countersStarted = false;
+    courses.push({
 
+        name: course,
 
-    function animateCounters() {
-
-        if (countersStarted) return;
-
-        countersStarted = true;
-
-
-        counters.forEach(counter => {
-
-            const target =
-                Number(counter.dataset.count);
-
-            let current = 0;
-
-            const duration = 1500;
-
-            const increment =
-                target / (duration / 16);
-
-
-            const update = () => {
-
-                current += increment;
-
-
-                if (current >= target) {
-
-                    counter.textContent =
-                        formatNumber(target);
-
-                    return;
-
-                }
-
-
-                counter.textContent =
-                    formatNumber(
-                        Math.floor(current)
-                    );
-
-
-                requestAnimationFrame(update);
-
-            };
-
-
-            update();
-
-        });
-
-    }
-
-
-    function formatNumber(number) {
-
-        if (number >= 1000) {
-
-            return (
-                Math.floor(number / 100) / 10
-            ) + "k+";
-
-        }
-
-        return number;
-
-    }
-
-
-    const statsSection =
-        document.querySelector(".stats-section");
-
-
-    const statsObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        animateCounters();
-
-                        statsObserver.disconnect();
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: .4
-            }
-        );
-
-
-    if (statsSection) {
-
-        statsObserver.observe(
-            statsSection
-        );
-
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".course-card, .category-card, .live-card, .instructor-card"
-        );
-
-
-    revealElements.forEach(element => {
-
-        element.style.opacity = "0";
-
-        element.style.transform =
-            "translateY(15px)";
-
-        element.style.transition =
-            "opacity .5s ease, transform .5s ease";
+        enrolled:
+            new Date().toISOString()
 
     });
 
 
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.style.opacity =
-                            "1";
-
-                        entry.target.style.transform =
-                            "translateY(0)";
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: .1
-            }
-        );
+    localStorage.setItem(
+        "lernoCourses",
+        JSON.stringify(courses)
+    );
 
 
-    revealElements.forEach(element => {
-
-        revealObserver.observe(element);
-
-    });
+    closeCourse();
 
 
-    /* =====================================================
-       CLOSE MODALS WITH ESC
-    ===================================================== */
+    alert(
+        "🎉 You are now enrolled in " +
+        course + "!"
+    );
 
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key !== "Escape") return;
+}
 
 
-            closeCourseModal();
+function showAllCourses() {
 
-            closeLoginModal();
+    document
+        .getElementById(
+            "courses"
+        )
+        .scrollIntoView({
+            behavior: "smooth"
+        });
 
-            notificationPanel.classList.remove(
-                "active"
+}
+
+
+/* =====================================================
+   CLASSES
+===================================================== */
+
+function joinClass(className) {
+
+    alert(
+        "🎥 " +
+        className +
+        "\n\n" +
+        "The live classroom will open here."
+    );
+
+}
+
+
+function scrollToCourses() {
+
+    document
+        .getElementById(
+            "courses"
+        )
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================================
+   CLOSE MODALS WHEN CLICKING OUTSIDE
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const login =
+            document.getElementById(
+                "loginModal"
             );
 
+        const signup =
+            document.getElementById(
+                "signupModal"
+            );
+
+        const course =
+            document.getElementById(
+                "courseModal"
+            );
+
+
+        if (event.target === login) {
+
+            closeLogin();
+
         }
-    );
 
 
-    /* =====================================================
-       TOAST
-    ===================================================== */
+        if (event.target === signup) {
 
-    let toastTimer;
+            closeSignup();
 
-
-    function showToast(message) {
-
-        toastMessage.textContent =
-            message;
-
-        toast.classList.add("show");
+        }
 
 
-        clearTimeout(toastTimer);
+        if (event.target === course) {
 
+            closeCourse();
 
-        toastTimer = setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 3000);
+        }
 
     }
-
-
-    /* =====================================================
-       SECURITY HELPER
-    ===================================================== */
-
-    function escapeHTML(value) {
-
-        const div =
-            document.createElement("div");
-
-        div.textContent =
-            value;
-
-        return div.innerHTML;
-
-    }
-
-
-    /* =====================================================
-       INITIAL MESSAGE
-    ===================================================== */
-
-    console.log(
-        "%cLearnova 🚀",
-        "font-size:22px;font-weight:bold;color:#635bff"
-    );
-
-    console.log(
-        "E-learning platform frontend initialized."
-    );
-
-});
+);
