@@ -4,33 +4,387 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lerno — Learning Platform</title>
+    <title>Lerno — Learn. Build. Grow.</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= APP ================= -->
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
 
-<div class="app">
+<div class="auth-screen" id="authScreen">
 
-    <!-- ================= SIDEBAR ================= -->
+    <div class="auth-container">
 
-    <aside class="sidebar" id="sidebar">
+        <!-- LEFT SIDE -->
+
+        <div class="auth-brand">
+
+            <div class="auth-logo">
+                L
+            </div>
+
+            <h1>
+                Lerno
+            </h1>
+
+            <p>
+                Learn skills. Build your future.
+            </p>
+
+            <div class="auth-features">
+
+                <div>
+                    <span>🎥</span>
+                    <div>
+                        <strong>Live Classes</strong>
+                        <small>Learn directly from instructors.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <span>📚</span>
+                    <div>
+                        <strong>Real Courses</strong>
+                        <small>Build skills from beginner to advanced.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <span>🏆</span>
+                    <div>
+                        <strong>Certificates</strong>
+                        <small>Earn certificates when you complete courses.</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIGNUP -->
+
+        <div class="auth-card" id="signupCard">
+
+            <div class="auth-heading">
+
+                <span class="eyebrow">
+                    WELCOME TO LERNO
+                </span>
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Choose how you want to use Lerno.
+                </p>
+
+            </div>
+
+
+            <!-- ACCOUNT TYPE -->
+
+            <div class="account-tabs">
+
+                <button
+                    class="account-tab active"
+                    data-account="student"
+                >
+                    👨‍🎓 Student
+                </button>
+
+                <button
+                    class="account-tab"
+                    data-account="instructor"
+                >
+                    👨‍🏫 Instructor
+                </button>
+
+            </div>
+
+
+            <form id="signupForm">
+
+                <!-- AVATAR -->
+
+                <div class="avatar-upload">
+
+                    <div
+                        class="signup-avatar"
+                        id="signupAvatar"
+                    >
+                        <span id="avatarPlaceholder">
+                            👤
+                        </span>
+
+                        <img
+                            id="avatarPreview"
+                            alt="Avatar preview"
+                        >
+                    </div>
+
+                    <div>
+
+                        <label
+                            for="avatarInput"
+                            class="upload-button"
+                        >
+                            📸 Upload Avatar
+                        </label>
+
+                        <input
+                            type="file"
+                            id="avatarInput"
+                            accept="image/*"
+                            hidden
+                        >
+
+                        <small>
+                            JPG, PNG or WEBP
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <!-- EMAIL -->
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <!-- STUDENT FIELDS -->
+
+                <div id="studentFields">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="5"
+                        max="100"
+                        placeholder="Your age"
+                    >
+
+
+                    <label>
+                        Learning Goal
+                    </label>
+
+                    <div class="goal-options">
+
+                        <button
+                            type="button"
+                            class="goal-button active"
+                            data-goal="Hobby"
+                        >
+                            🎨 Hobby
+                        </button>
+
+                        <button
+                            type="button"
+                            class="goal-button"
+                            data-goal="Career"
+                        >
+                            💼 Career
+                        </button>
+
+                    </div>
+
+
+                    <label>
+                        Interests
+                    </label>
+
+                    <div class="interest-grid">
+
+                        <label class="interest">
+                            <input
+                                type="checkbox"
+                                value="Web Development"
+                            >
+                            <span>Web Development</span>
+                        </label>
+
+                        <label class="interest">
+                            <input
+                                type="checkbox"
+                                value="Game Development"
+                            >
+                            <span>Game Dev</span>
+                        </label>
+
+                        <label class="interest">
+                            <input
+                                type="checkbox"
+                                value="UI/UX Design"
+                            >
+                            <span>UI/UX</span>
+                        </label>
+
+                        <label class="interest">
+                            <input
+                                type="checkbox"
+                                value="Artificial Intelligence"
+                            >
+                            <span>AI</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INSTRUCTOR FIELDS -->
+
+                <div
+                    id="instructorFields"
+                    class="hidden"
+                >
+
+                    <label>
+                        What do you teach?
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teaching"
+                        placeholder="e.g. HTML, Game Development"
+                    >
+
+
+                    <label>
+                        Instructor Verification Code
+                    </label>
+
+                    <input
+                        type="password"
+                        id="teacherCode"
+                        placeholder="Enter instructor code"
+                    >
+
+                    <small class="form-help">
+                        Demo code for V1.1: <b>12345</b>
+                    </small>
+
+
+                    <label>
+                        Instructor Bio
+                    </label>
+
+                    <textarea
+                        id="teacherBio"
+                        placeholder="Tell students about yourself..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary full auth-submit"
+                >
+                    Create Student Account
+                </button>
+
+            </form>
+
+
+            <p class="auth-footer">
+                By creating an account, you agree to use Lerno responsibly.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div
+    class="app hidden"
+    id="app"
+>
+
+    <!-- SIDEBAR -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
 
         <div class="brand">
-            <div class="brand-icon">L</div>
-            <span>Lerno</span>
+
+            <div class="brand-icon">
+                L
+            </div>
+
+            <span>
+                Lerno
+            </span>
+
         </div>
+
 
         <div class="user-mini">
 
-            <div class="avatar" id="sidebarAvatar">
-                A
-            </div>
+            <img
+                class="avatar-image"
+                id="sidebarAvatar"
+                alt="Profile"
+            >
 
             <div>
+
                 <strong id="sidebarName">
                     Ashraf
                 </strong>
@@ -38,9 +392,11 @@
                 <small id="sidebarRole">
                     Student
                 </small>
+
             </div>
 
         </div>
+
 
         <nav class="side-nav">
 
@@ -104,6 +460,7 @@
 
         </nav>
 
+
         <div class="sidebar-bottom">
 
             <button
@@ -131,17 +488,33 @@
                 Teacher Studio
             </button>
 
+            <button
+                class="nav-btn logout-button"
+                id="logoutButton"
+            >
+                <span>🚪</span>
+                Log Out
+            </button>
+
         </div>
 
+
         <div class="sidebar-footer">
-            <span>© 2026 Lerno</span>
-            <span>v1.0</span>
+
+            <span>
+                © 2026 Lerno
+            </span>
+
+            <span>
+                v1.1
+            </span>
+
         </div>
 
     </aside>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- MAIN -->
 
     <main class="main">
 
@@ -158,7 +531,9 @@
 
             <div class="search">
 
-                <span>⌕</span>
+                <span>
+                    ⌕
+                </span>
 
                 <input
                     type="text"
@@ -167,6 +542,7 @@
                 >
 
             </div>
+
 
             <div class="top-actions">
 
@@ -183,15 +559,19 @@
                     data-page="profile"
                 >
 
-                    <div class="avatar small">
-                        A
-                    </div>
+                    <img
+                        class="avatar-image small"
+                        id="topAvatar"
+                        alt="Profile"
+                    >
 
                     <span id="topName">
                         Ashraf
                     </span>
 
-                    <span>⌄</span>
+                    <span>
+                        ⌄
+                    </span>
 
                 </button>
 
@@ -200,14 +580,12 @@
         </header>
 
 
-        <!-- ================= CONTENT ================= -->
+        <!-- CONTENT -->
 
         <section class="content">
 
 
-            <!-- =================================================
-                 HOME
-            ================================================= -->
+            <!-- HOME -->
 
             <div
                 class="page active"
@@ -260,8 +638,7 @@
                         </h3>
 
                         <p>
-                            Discover useful tools and learning
-                            resources from our partners.
+                            Discover useful tools and learning resources.
                         </p>
 
                     </div>
@@ -284,8 +661,15 @@
                         </div>
 
                         <div>
-                            <span>Courses</span>
-                            <strong>4</strong>
+
+                            <span>
+                                Courses
+                            </span>
+
+                            <strong>
+                                4
+                            </strong>
+
                         </div>
 
                     </div>
@@ -298,8 +682,15 @@
                         </div>
 
                         <div>
-                            <span>Learning time</span>
-                            <strong>18h</strong>
+
+                            <span>
+                                Learning time
+                            </span>
+
+                            <strong>
+                                18h
+                            </strong>
+
                         </div>
 
                     </div>
@@ -312,8 +703,15 @@
                         </div>
 
                         <div>
-                            <span>Completed</span>
-                            <strong>12</strong>
+
+                            <span>
+                                Completed
+                            </span>
+
+                            <strong>
+                                12
+                            </strong>
+
                         </div>
 
                     </div>
@@ -326,8 +724,15 @@
                         </div>
 
                         <div>
-                            <span>Day streak</span>
-                            <strong>7</strong>
+
+                            <span>
+                                Day streak
+                            </span>
+
+                            <strong>
+                                7
+                            </strong>
+
                         </div>
 
                     </div>
@@ -335,11 +740,12 @@
                 </div>
 
 
-                <!-- CONTINUE -->
+                <!-- COURSES -->
 
                 <div class="section-heading">
 
                     <div>
+
                         <span class="eyebrow">
                             KEEP GOING
                         </span>
@@ -347,6 +753,7 @@
                         <h2>
                             Continue learning
                         </h2>
+
                     </div>
 
                     <button
@@ -364,7 +771,9 @@
                     <div class="learning-card">
 
                         <div class="course-cover html">
-                            <span>HTML</span>
+                            <span>
+                                HTML
+                            </span>
                         </div>
 
                         <div class="learning-body">
@@ -386,12 +795,17 @@
                             </div>
 
                             <div class="progress-row">
-                                <span>68%</span>
+
+                                <span>
+                                    68%
+                                </span>
+
                                 <button
                                     onclick="openLesson('HTML Fundamentals')"
                                 >
                                     Continue
                                 </button>
+
                             </div>
 
                         </div>
@@ -402,7 +816,9 @@
                     <div class="learning-card">
 
                         <div class="course-cover javascript">
-                            <span>JS</span>
+                            <span>
+                                JS
+                            </span>
                         </div>
 
                         <div class="learning-body">
@@ -424,12 +840,17 @@
                             </div>
 
                             <div class="progress-row">
-                                <span>42%</span>
+
+                                <span>
+                                    42%
+                                </span>
+
                                 <button
                                     onclick="openLesson('JavaScript Basics')"
                                 >
                                     Continue
                                 </button>
+
                             </div>
 
                         </div>
@@ -439,11 +860,12 @@
                 </div>
 
 
-                <!-- LIVE CLASS -->
+                <!-- LIVE -->
 
                 <div class="section-heading">
 
                     <div>
+
                         <span class="eyebrow">
                             LIVE NOW
                         </span>
@@ -451,6 +873,7 @@
                         <h2>
                             Upcoming class
                         </h2>
+
                     </div>
 
                 </div>
@@ -490,9 +913,7 @@
             </div>
 
 
-            <!-- =================================================
-                 MY LEARNING
-            ================================================= -->
+            <!-- MY LEARNING -->
 
             <div
                 class="page"
@@ -535,8 +956,7 @@
                             </h2>
 
                             <p>
-                                Learn HTML from the basics to
-                                building complete web pages.
+                                Learn HTML from the basics to complete web pages.
                             </p>
 
                             <div class="progress">
@@ -611,9 +1031,7 @@
             </div>
 
 
-            <!-- =================================================
-                 CLASSES
-            ================================================= -->
+            <!-- CLASSES -->
 
             <div
                 class="page"
@@ -662,15 +1080,17 @@
                         </h2>
 
                         <p>
-                            Learn variables, functions and
-                            JavaScript basics.
+                            Learn variables, functions and JavaScript basics.
                         </p>
 
                         <div class="teacher-line">
 
-                            <div class="avatar">
-                                A
-                            </div>
+                            <img
+                                class="avatar-image"
+                                src=""
+                                alt="Teacher"
+                                data-teacher-avatar
+                            >
 
                             <span>
                                 Ashraf · Instructor
@@ -711,8 +1131,7 @@
                         </h2>
 
                         <p>
-                            Learn how to design modern digital
-                            products.
+                            Learn how to design modern digital products.
                         </p>
 
                         <div class="teacher-line">
@@ -741,9 +1160,7 @@
             </div>
 
 
-            <!-- =================================================
-                 ASSIGNMENTS
-            ================================================= -->
+            <!-- ASSIGNMENTS -->
 
             <div
                 class="page"
@@ -876,9 +1293,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TESTS
-            ================================================= -->
+            <!-- TESTS -->
 
             <div
                 class="page"
@@ -964,9 +1379,7 @@
             </div>
 
 
-            <!-- =================================================
-                 PROGRESS
-            ================================================= -->
+            <!-- PROGRESS -->
 
             <div
                 class="page"
@@ -1091,9 +1504,7 @@
             </div>
 
 
-            <!-- =================================================
-                 NOTIFICATIONS
-            ================================================= -->
+            <!-- NOTIFICATIONS -->
 
             <div
                 class="page"
@@ -1117,9 +1528,12 @@
 
                     <div class="notification unread">
 
-                        <span>🎥</span>
+                        <span>
+                            🎥
+                        </span>
 
                         <div>
+
                             <strong>
                                 JavaScript class starts soon
                             </strong>
@@ -1131,6 +1545,7 @@
                             <small>
                                 10 minutes ago
                             </small>
+
                         </div>
 
                     </div>
@@ -1138,9 +1553,12 @@
 
                     <div class="notification unread">
 
-                        <span>📝</span>
+                        <span>
+                            📝
+                        </span>
 
                         <div>
+
                             <strong>
                                 Assignment deadline
                             </strong>
@@ -1152,27 +1570,7 @@
                             <small>
                                 1 hour ago
                             </small>
-                        </div>
 
-                    </div>
-
-
-                    <div class="notification">
-
-                        <span>🎉</span>
-
-                        <div>
-                            <strong>
-                                You completed a lesson!
-                            </strong>
-
-                            <p>
-                                Keep your learning streak alive.
-                            </p>
-
-                            <small>
-                                Yesterday
-                            </small>
                         </div>
 
                     </div>
@@ -1182,9 +1580,7 @@
             </div>
 
 
-            <!-- =================================================
-                 PROFILE
-            ================================================= -->
+            <!-- PROFILE -->
 
             <div
                 class="page"
@@ -1206,33 +1602,54 @@
 
                 <div class="profile-card">
 
-                    <div class="profile-avatar">
-                        A
-                    </div>
+                    <img
+                        class="profile-avatar-image"
+                        id="profileAvatar"
+                        alt="Profile avatar"
+                    >
 
                     <h2 id="profileName">
                         Ashraf
                     </h2>
 
-                    <p>
-                        Student · Web Development
+                    <p id="profileRole">
+                        Student
+                    </p>
+
+                    <p id="profileExtra">
+                        Web Development
                     </p>
 
                     <div class="profile-stats">
 
                         <div>
-                            <strong>4</strong>
-                            <span>Courses</span>
+                            <strong>
+                                4
+                            </strong>
+
+                            <span>
+                                Courses
+                            </span>
                         </div>
 
                         <div>
-                            <strong>12</strong>
-                            <span>Lessons</span>
+                            <strong>
+                                12
+                            </strong>
+
+                            <span>
+                                Lessons
+                            </span>
                         </div>
 
                         <div>
-                            <strong>7</strong>
-                            <span>Day streak</span>
+                            <strong>
+                                7
+                            </strong>
+
+                            <span>
+                                Day streak
+                            </span>
                         </div>
 
                     </div>
@@ -1249,9 +1666,7 @@
             </div>
 
 
-            <!-- =================================================
-                 SETTINGS
-            ================================================= -->
+            <!-- SETTINGS -->
 
             <div
                 class="page"
@@ -1276,6 +1691,7 @@
                     <div class="setting">
 
                         <div>
+
                             <strong>
                                 Dark Mode
                             </strong>
@@ -1283,6 +1699,7 @@
                             <p>
                                 Use Lerno's dark interface.
                             </p>
+
                         </div>
 
                         <label class="switch">
@@ -1303,6 +1720,7 @@
                     <div class="setting">
 
                         <div>
+
                             <strong>
                                 Class Notifications
                             </strong>
@@ -1310,32 +1728,7 @@
                             <p>
                                 Get reminders before live classes.
                             </p>
-                        </div>
 
-                        <label class="switch">
-
-                            <input
-                                type="checkbox"
-                                checked
-                            >
-
-                            <span></span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="setting">
-
-                        <div>
-                            <strong>
-                                Assignment Notifications
-                            </strong>
-
-                            <p>
-                                Receive deadline reminders.
-                            </p>
                         </div>
 
                         <label class="switch">
@@ -1356,9 +1749,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TEACHER STUDIO
-            ================================================= -->
+            <!-- TEACHER -->
 
             <div
                 class="page"
@@ -1393,26 +1784,69 @@
                 </div>
 
 
+                <div class="teacher-profile-mini">
+
+                    <img
+                        class="profile-avatar-mini"
+                        id="teacherAvatar"
+                        alt="Instructor"
+                    >
+
+                    <div>
+
+                        <strong id="teacherName">
+                            Instructor
+                        </strong>
+
+                        <span id="teacherSubject">
+                            Instructor
+                        </span>
+
+                    </div>
+
+                </div>
+
+
                 <div class="teacher-stats">
 
                     <div>
-                        <span>Students</span>
-                        <strong>248</strong>
+                        <span>
+                            Students
+                        </span>
+
+                        <strong>
+                            248
+                        </strong>
                     </div>
 
                     <div>
-                        <span>Assignments</span>
-                        <strong>183</strong>
+                        <span>
+                            Assignments
+                        </span>
+
+                        <strong>
+                            183
+                        </strong>
                     </div>
 
                     <div>
-                        <span>Average Score</span>
-                        <strong>84%</strong>
+                        <span>
+                            Average Score
+                        </span>
+
+                        <strong>
+                            84%
+                        </strong>
                     </div>
 
                     <div>
-                        <span>Attendance</span>
-                        <strong>87%</strong>
+                        <span>
+                            Attendance
+                        </span>
+
+                        <strong>
+                            87%
+                        </strong>
                     </div>
 
                 </div>
@@ -1467,46 +1901,60 @@
 
                     <div class="analytics-card">
 
-                        <div class="section-heading">
-
-                            <h2>
-                                Student Activity
-                            </h2>
-
-                        </div>
+                        <h2>
+                            Student Activity
+                        </h2>
 
                         <div class="activity">
 
                             <div>
-                                <span>Attentive</span>
+
+                                <span>
+                                    Attentive
+                                </span>
 
                                 <div class="bar">
                                     <div style="width:87%"></div>
                                 </div>
 
-                                <b>87%</b>
+                                <b>
+                                    87%
+                                </b>
+
                             </div>
 
 
                             <div>
-                                <span>Assignments Submitted</span>
+
+                                <span>
+                                    Assignments Submitted
+                                </span>
 
                                 <div class="bar">
                                     <div style="width:79%"></div>
                                 </div>
 
-                                <b>79%</b>
+                                <b>
+                                    79%
+                                </b>
+
                             </div>
 
 
                             <div>
-                                <span>Tests Completed</span>
+
+                                <span>
+                                    Tests Completed
+                                </span>
 
                                 <div class="bar">
                                     <div style="width:91%"></div>
                                 </div>
 
-                                <b>91%</b>
+                                <b>
+                                    91%
+                                </b>
+
                             </div>
 
                         </div>
@@ -1521,23 +1969,25 @@
                         </h2>
 
                         <p>
-                            Lerno can later provide AI-assistance
-                            indicators for submitted work.
+                            AI-use indicators can help teachers review submitted work.
                         </p>
 
                         <div class="ai-notice">
+
                             🤖
+
                             <div>
+
                                 <strong>
-                                    Detection should be a signal,
-                                    not proof.
+                                    Review signal, not proof.
                                 </strong>
 
                                 <small>
-                                    Teachers should review work
-                                    before making decisions.
+                                    Teachers should review work before making decisions.
                                 </small>
+
                             </div>
+
                         </div>
 
                     </div>
@@ -1553,7 +2003,9 @@
 </div>
 
 
-<!-- ================= MODAL ================= -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
     class="modal"
