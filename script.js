@@ -1,37 +1,840 @@
 /* =====================================================
-   LERNO V1
-   MAIN JAVASCRIPT
+   LERNO V1.1
+   AUTH + AVATAR + APP
 ===================================================== */
 
 
 /* =====================================================
-   THEME
+   USER DATA
 ===================================================== */
 
-function toggleTheme() {
+let currentUser = {
 
-    document.body.classList.toggle("light");
+    name: "Ashraf",
 
-    const theme =
-        document.body.classList.contains("light")
-            ? "light"
-            : "dark";
+    email: "ashraf@lerno.demo",
 
-    localStorage.setItem(
-        "lernoTheme",
-        theme
+    role: "student",
+
+    age: 17,
+
+    goal: "Hobby",
+
+    interests: [
+        "Web Development",
+        "UI/UX Design"
+    ],
+
+    teaching: "",
+
+    bio: "",
+
+    avatar: ""
+
+};
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const authScreen =
+    document.getElementById("authScreen");
+
+const app =
+    document.getElementById("app");
+
+const signupForm =
+    document.getElementById("signupForm");
+
+const studentFields =
+    document.getElementById("studentFields");
+
+const instructorFields =
+    document.getElementById("instructorFields");
+
+const accountTabs =
+    document.querySelectorAll(".account-tab");
+
+const goalButtons =
+    document.querySelectorAll(".goal-button");
+
+const avatarInput =
+    document.getElementById("avatarInput");
+
+const avatarPreview =
+    document.getElementById("avatarPreview");
+
+const avatarPlaceholder =
+    document.getElementById("avatarPlaceholder");
+
+const signupButton =
+    document.querySelector(".auth-submit");
+
+
+/* =====================================================
+   ACCOUNT TYPE
+===================================================== */
+
+let selectedAccount =
+    "student";
+
+
+accountTabs.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        accountTabs.forEach(tab => {
+
+            tab.classList.remove("active");
+
+        });
+
+
+        button.classList.add("active");
+
+
+        selectedAccount =
+            button.dataset.account;
+
+
+        if (
+            selectedAccount === "student"
+        ) {
+
+            studentFields.classList.remove(
+                "hidden"
+            );
+
+            instructorFields.classList.add(
+                "hidden"
+            );
+
+            signupButton.textContent =
+                "Create Student Account";
+
+        }
+
+        else {
+
+            studentFields.classList.add(
+                "hidden"
+            );
+
+            instructorFields.classList.remove(
+                "hidden"
+            );
+
+            signupButton.textContent =
+                "Create Instructor Account";
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   LEARNING GOAL
+===================================================== */
+
+let selectedGoal =
+    "Hobby";
+
+
+goalButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        goalButtons.forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+        button.classList.add(
+            "active"
+        );
+
+
+        selectedGoal =
+            button.dataset.goal;
+
+    });
+
+});
+
+
+/* =====================================================
+   AVATAR UPLOAD
+===================================================== */
+
+avatarInput.addEventListener(
+    "change",
+    event => {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) return;
+
+
+        if (
+            !file.type.startsWith("image/")
+        ) {
+
+            alert(
+                "Please choose an image file."
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = () => {
+
+            const imageData =
+                reader.result;
+
+
+            avatarPreview.src =
+                imageData;
+
+            avatarPreview.style.display =
+                "block";
+
+            avatarPlaceholder.style.display =
+                "none";
+
+
+            /*
+                We temporarily keep the avatar
+                in browser storage.
+            */
+
+            currentUser.avatar =
+                imageData;
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   SIGNUP
+===================================================== */
+
+signupForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("fullName")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (
+            !name ||
+            !email ||
+            !password
+        ) {
+
+            alert(
+                "Please complete all required fields."
+            );
+
+            return;
+
+        }
+
+
+        /* ================= STUDENT ================= */
+
+        if (
+            selectedAccount ===
+            "student"
+        ) {
+
+            const age =
+                Number(
+                    document
+                        .getElementById("age")
+                        .value
+                );
+
+
+            if (
+                !age ||
+                age < 5 ||
+                age > 100
+            ) {
+
+                alert(
+                    "Please enter a valid age."
+                );
+
+                return;
+
+            }
+
+
+            const interests =
+                [
+                    ...document.querySelectorAll(
+                        ".interest input:checked"
+                    )
+                ].map(
+                    checkbox =>
+                        checkbox.value
+                );
+
+
+            currentUser = {
+
+                name,
+
+                email,
+
+                role: "student",
+
+                age,
+
+                goal:
+                    selectedGoal,
+
+                interests,
+
+                teaching: "",
+
+                bio: "",
+
+                avatar:
+                    currentUser.avatar || ""
+
+            };
+
+        }
+
+
+        /* ================= INSTRUCTOR ================= */
+
+        else {
+
+            const teaching =
+                document
+                    .getElementById("teaching")
+                    .value
+                    .trim();
+
+
+            const teacherCode =
+                document
+                    .getElementById("teacherCode")
+                    .value;
+
+
+            const bio =
+                document
+                    .getElementById("teacherBio")
+                    .value
+                    .trim();
+
+
+            if (!teaching) {
+
+                alert(
+                    "Please tell us what you teach."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                TEMPORARY V1.1 DEMO VERIFICATION
+
+                This will later become real
+                instructor authentication.
+            */
+
+            if (
+                teacherCode !==
+                "12345"
+            ) {
+
+                alert(
+                    "❌ Incorrect instructor verification code."
+                );
+
+                return;
+
+            }
+
+
+            currentUser = {
+
+                name,
+
+                email,
+
+                role: "instructor",
+
+                age: null,
+
+                goal: "",
+
+                interests: [],
+
+                teaching,
+
+                bio,
+
+                avatar:
+                    currentUser.avatar || ""
+
+            };
+
+        }
+
+
+        /* SAVE */
+
+        localStorage.setItem(
+            "lernoUser",
+            JSON.stringify(
+                currentUser
+            )
+        );
+
+
+        launchApp();
+
+    }
+);
+
+
+/* =====================================================
+   LAUNCH APP
+===================================================== */
+
+function launchApp() {
+
+    authScreen.classList.add(
+        "hidden"
+    );
+
+    app.classList.remove(
+        "hidden"
+    );
+
+
+    updateUserInterface();
+
+    setupRoleInterface();
+
+
+    showPage("home");
+
+}
+
+
+/* =====================================================
+   UPDATE USER UI
+===================================================== */
+
+function updateUserInterface() {
+
+    const firstLetter =
+        currentUser.name
+            .charAt(0)
+            .toUpperCase();
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "sidebarName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "topName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "profileRole"
+    ).textContent =
+        currentUser.role ===
+        "instructor"
+            ? "Instructor"
+            : "Student";
+
+
+    /* PROFILE EXTRA */
+
+    if (
+        currentUser.role ===
+        "instructor"
+    ) {
+
+        document.getElementById(
+            "profileExtra"
+        ).textContent =
+            currentUser.teaching ||
+            "Instructor";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "profileExtra"
+        ).textContent =
+            currentUser.goal +
+            " learner";
+
+    }
+
+
+    /* AVATAR */
+
+    const avatars =
+        document.querySelectorAll(
+            ".avatar-image"
+        );
+
+
+    avatars.forEach(avatar => {
+
+        if (currentUser.avatar) {
+
+            avatar.src =
+                currentUser.avatar;
+
+        }
+
+        else {
+
+            avatar.src =
+                createAvatarPlaceholder(
+                    firstLetter
+                );
+
+        }
+
+    });
+
+
+    const profileAvatar =
+        document.getElementById(
+            "profileAvatar"
+        );
+
+
+    if (
+        currentUser.avatar
+    ) {
+
+        profileAvatar.src =
+            currentUser.avatar;
+
+    }
+
+    else {
+
+        profileAvatar.src =
+            createAvatarPlaceholder(
+                firstLetter
+            );
+
+    }
+
+
+    const teacherAvatar =
+        document.getElementById(
+            "teacherAvatar"
+        );
+
+
+    if (
+        currentUser.avatar
+    ) {
+
+        teacherAvatar.src =
+            currentUser.avatar;
+
+    }
+
+    else {
+
+        teacherAvatar.src =
+            createAvatarPlaceholder(
+                firstLetter
+            );
+
+    }
+
+
+    document.getElementById(
+        "teacherName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "teacherSubject"
+    ).textContent =
+        currentUser.teaching ||
+        "Instructor";
+
+}
+
+
+/* =====================================================
+   PLACEHOLDER AVATAR
+===================================================== */
+
+function createAvatarPlaceholder(
+    letter
+) {
+
+    return (
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="100"
+                height="100"
+                viewBox="0 0 100 100"
+            >
+
+                <rect
+                    width="100"
+                    height="100"
+                    rx="50"
+                    fill="#272d3a"
+                />
+
+                <text
+                    x="50"
+                    y="58"
+                    text-anchor="middle"
+                    font-size="42"
+                    font-family="Arial"
+                    font-weight="bold"
+                    fill="white"
+                >
+                    ${letter}
+                </text>
+
+            </svg>
+
+        `)
     );
 
 }
 
 
-/* Load saved theme */
+/* =====================================================
+   ROLE INTERFACE
+===================================================== */
 
-if (
-    localStorage.getItem("lernoTheme") === "light"
+function setupRoleInterface() {
+
+    const teacherButton =
+        document.getElementById(
+            "teacherStudioButton"
+        );
+
+
+    if (
+        currentUser.role ===
+        "instructor"
+    ) {
+
+        teacherButton.classList.remove(
+            "hidden"
+        );
+
+    }
+
+    else {
+
+        teacherButton.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+const navButtons =
+    document.querySelectorAll(
+        ".nav-btn"
+    );
+
+
+const pages =
+    document.querySelectorAll(
+        ".page"
+    );
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const page =
+                button.dataset.page;
+
+
+            if (!page) return;
+
+
+            showPage(page);
+
+        }
+    );
+
+});
+
+
+document
+    .querySelectorAll(
+        "[data-page]"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const page =
+                    button.dataset.page;
+
+
+                if (page) {
+
+                    showPage(page);
+
+                }
+
+            }
+        );
+
+    });
+
+
+function showPage(
+    pageName
 ) {
 
-    document.body.classList.add("light");
+    pages.forEach(page => {
+
+        page.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    const target =
+        document.getElementById(
+            pageName
+        );
+
+
+    if (target) {
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    navButtons.forEach(button => {
+
+        button.classList.remove(
+            "active"
+        );
+
+
+        if (
+            button.dataset.page ===
+            pageName
+        ) {
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+
+    closeMobileSidebar();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -40,637 +843,145 @@ if (
    MOBILE MENU
 ===================================================== */
 
-function toggleMenu() {
-
-    const menu =
-        document.getElementById("mobileMenu");
-
-    menu.classList.toggle("show");
-
-}
-
-
-function closeMenu() {
-
-    const menu =
-        document.getElementById("mobileMenu");
-
-    menu.classList.remove("show");
-
-}
-
-
-/* =====================================================
-   LOGIN MODAL
-===================================================== */
-
-function openLogin() {
-
-    document
-        .getElementById("loginModal")
-        .classList.add("show");
-
-}
-
-
-function closeLogin() {
-
-    document
-        .getElementById("loginModal")
-        .classList.remove("show");
-
-}
-
-
-/* =====================================================
-   SIGNUP MODAL
-===================================================== */
-
-function openSignup() {
-
-    document
-        .getElementById("signupModal")
-        .classList.add("show");
-
-}
-
-
-function closeSignup() {
-
-    document
-        .getElementById("signupModal")
-        .classList.remove("show");
-
-}
-
-
-function openTeacherSignup() {
-
-    openSignup();
-
-    selectAccountType("teacher");
-
-}
-
-
-/* =====================================================
-   LOGIN TABS
-===================================================== */
-
-function showStudentLogin() {
-
-    document
-        .getElementById("studentLogin")
-        .classList.remove("hidden");
-
-    document
-        .getElementById("teacherLogin")
-        .classList.add("hidden");
-
-
-    document
-        .getElementById("studentTab")
-        .classList.add("selected");
-
-    document
-        .getElementById("teacherTab")
-        .classList.remove("selected");
-
-}
-
-
-function showTeacherLogin() {
-
-    document
-        .getElementById("studentLogin")
-        .classList.add("hidden");
-
-    document
-        .getElementById("teacherLogin")
-        .classList.remove("hidden");
-
-
-    document
-        .getElementById("teacherTab")
-        .classList.add("selected");
-
-    document
-        .getElementById("studentTab")
-        .classList.remove("selected");
-
-}
-
-
-/* =====================================================
-   ACCOUNT TYPE
-===================================================== */
-
-function selectAccountType(type) {
-
-    const student =
-        document.getElementById(
-            "studentType"
-        );
-
-    const teacher =
-        document.getElementById(
-            "teacherType"
-        );
-
-    const studentOptions =
-        document.getElementById(
-            "studentOptions"
-        );
-
-    const teacherOptions =
-        document.getElementById(
-            "teacherOptions"
-        );
-
-
-    if (type === "student") {
-
-        student.classList.add("selected");
-
-        teacher.classList.remove("selected");
-
-        studentOptions.classList.remove("hidden");
-
-        teacherOptions.classList.add("hidden");
-
-    }
-
-
-    if (type === "teacher") {
-
-        teacher.classList.add("selected");
-
-        student.classList.remove("selected");
-
-        teacherOptions.classList.remove("hidden");
-
-        studentOptions.classList.add("hidden");
-
-    }
-
-}
-
-
-/* =====================================================
-   STUDENT LOGIN
-===================================================== */
-
-function studentLogin() {
-
-    const name =
-        document
-            .getElementById(
-                "studentLoginName"
-            )
-            .value
-            .trim();
-
-
-    if (!name) {
-
-        alert(
-            "Please enter your name."
-        );
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "lernoUser",
-        JSON.stringify({
-            name: name,
-            role: "student"
-        })
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
     );
 
 
-    closeLogin();
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
 
 
-    alert(
-        "Welcome to Lerno, " +
-        name +
-        "! 🎓"
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+function closeMobileSidebar() {
+
+    sidebar.classList.remove(
+        "open"
     );
 
 }
 
 
 /* =====================================================
-   TEACHER LOGIN
+   SEARCH
 ===================================================== */
 
-function teacherLogin() {
-
-    const name =
-        document
-            .getElementById(
-                "teacherLoginName"
-            )
-            .value
-            .trim();
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
 
 
-    const password =
-        document
-            .getElementById(
-                "teacherLoginPassword"
-            )
-            .value;
+searchInput.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            const value =
+                searchInput.value.trim();
 
 
-    /*
-        V1 DEMO LOGIN
+            if (!value) return;
 
-        Teacher:
-        Ashraf
-
-        Password:
-        12345
-    */
-
-
-    if (
-        name.toLowerCase() === "ashraf" &&
-        password === "12345"
-    ) {
-
-        localStorage.setItem(
-            "lernoUser",
-            JSON.stringify({
-
-                name: "Ashraf",
-
-                role: "teacher",
-
-                verified: true
-
-            })
-        );
-
-
-        closeLogin();
-
-
-        alert(
-            "Teacher verified! 👨‍🏫\n\n" +
-            "Welcome to your Teacher Studio."
-        );
-
-
-        /*
-            Later this button will open:
-
-            teacher.html
-
-            For V1 we keep everything
-            inside the prototype.
-        */
-
-    }
-
-    else {
-
-        alert(
-            "Invalid teacher login.\n\n" +
-            "Demo:\n" +
-            "Name: Ashraf\n" +
-            "Password: 12345"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CREATE ACCOUNT
-===================================================== */
-
-function createAccount() {
-
-    const name =
-        document
-            .getElementById(
-                "signupName"
-            )
-            .value
-            .trim();
-
-
-    const password =
-        document
-            .getElementById(
-                "signupPassword"
-            )
-            .value;
-
-
-    if (!name) {
-
-        alert(
-            "Please enter your name."
-        );
-
-        return;
-
-    }
-
-
-    if (!password) {
-
-        alert(
-            "Please create a password."
-        );
-
-        return;
-
-    }
-
-
-    const teacherButton =
-        document
-            .getElementById(
-                "teacherType"
-            );
-
-
-    const isTeacher =
-        teacherButton.classList.contains(
-            "selected"
-        );
-
-
-    /* ================= TEACHER ================= */
-
-    if (isTeacher) {
-
-        const subject =
-            document
-                .getElementById(
-                    "teacherSubject"
-                )
-                .value
-                .trim();
-
-
-        const description =
-            document
-                .getElementById(
-                    "teacherDescription"
-                )
-                .value
-                .trim();
-
-
-        if (!subject) {
 
             alert(
-                "Please enter what you teach."
+                "🔎 Searching Lerno for:\n\n" +
+                value
             );
-
-            return;
 
         }
 
-
-        const application = {
-
-            name: name,
-
-            subject: subject,
-
-            description: description,
-
-            status: "pending",
-
-            date:
-                new Date()
-                    .toISOString()
-
-        };
-
-
-        localStorage.setItem(
-            "lernoTeacherApplication",
-            JSON.stringify(application)
-        );
-
-
-        closeSignup();
-
-
-        alert(
-            "Teacher application submitted! 👨‍🏫\n\n" +
-            "Your subject: " +
-            subject +
-            "\n\n" +
-            "Once verified, your subject can become a Lerno course."
-        );
-
-
-        return;
-
     }
+);
 
 
-    /* ================= STUDENT ================= */
+function openSearch() {
 
-    const goal =
-        document.querySelector(
-            'input[name="goal"]:checked'
-        );
-
-
-    const selectedGoal =
-        goal
-            ? goal.value
-            : "career";
-
-
-    const user = {
-
-        name: name,
-
-        password: password,
-
-        role: "student",
-
-        goal: selectedGoal
-
-    };
-
-
-    localStorage.setItem(
-        "lernoUser",
-        JSON.stringify(user)
-    );
-
-
-    closeSignup();
-
-
-    alert(
-        "Account created! 🎉\n\n" +
-        "Learning goal: " +
-        selectedGoal
-    );
+    searchInput.focus();
 
 }
 
 
 /* =====================================================
-   LEARNING GOAL
+   LESSON
 ===================================================== */
 
-function selectGoal(goal) {
+function openLesson(
+    course
+) {
 
-    localStorage.setItem(
-        "lernoGoal",
-        goal
-    );
+    openModal(`
+
+        <div class="eyebrow">
+            COURSE
+        </div>
+
+        <h2 style="margin-top:8px">
+            ${course}
+        </h2>
+
+        <p style="color:#8993a6;margin:10px 0 20px">
+            Your next lesson is ready.
+        </p>
+
+        <div style="
+            padding:15px;
+            border:1px solid #252c3a;
+            border-radius:12px;
+            margin-bottom:15px;
+        ">
+
+            🎥 Video lesson
+
+            <br><br>
+
+            📄 Lesson notes
+
+            <br><br>
+
+            📝 Practice exercise
+
+        </div>
+
+        <button
+            class="primary full"
+            onclick="startLesson()"
+        >
+            ▶ Start Lesson
+        </button>
+
+    `);
+
+}
 
 
-    const names = {
+function startLesson() {
 
-        career: "Career",
-
-        hobby: "Hobby",
-
-        school: "School"
-
-    };
+    closeModal();
 
 
     alert(
-        "Great choice! 🎓\n\n" +
-        "You selected: " +
-        names[goal]
+        "🎥 Lesson started!\n\n" +
+        "The real video player will be connected later."
     );
-
-
-    openSignup();
-
-}
-
-
-/* =====================================================
-   COURSE
-===================================================== */
-
-function openCourse(courseName) {
-
-    const modal =
-        document.getElementById(
-            "courseModal"
-        );
-
-
-    document
-        .getElementById(
-            "courseModalTitle"
-        )
-        .textContent = courseName;
-
-
-    const icons = {
-
-        "HTML Fundamentals": "🌐",
-
-        "CSS Masterclass": "🎨",
-
-        "JavaScript Basics": "⚡",
-
-        "UI/UX Design": "🧩"
-
-    };
-
-
-    document
-        .getElementById(
-            "courseModalIcon"
-        )
-        .textContent =
-        icons[courseName] || "📚";
-
-
-    modal.classList.add("show");
-
-}
-
-
-function closeCourse() {
-
-    document
-        .getElementById(
-            "courseModal"
-        )
-        .classList.remove("show");
-
-}
-
-
-function enrollCourse() {
-
-    const course =
-        document
-            .getElementById(
-                "courseModalTitle"
-            )
-            .textContent;
-
-
-    let courses =
-        JSON.parse(
-            localStorage.getItem(
-                "lernoCourses"
-            ) || "[]"
-        );
-
-
-    courses.push({
-
-        name: course,
-
-        enrolled:
-            new Date().toISOString()
-
-    });
-
-
-    localStorage.setItem(
-        "lernoCourses",
-        JSON.stringify(courses)
-    );
-
-
-    closeCourse();
-
-
-    alert(
-        "🎉 You are now enrolled in " +
-        course + "!"
-    );
-
-}
-
-
-function showAllCourses() {
-
-    document
-        .getElementById(
-            "courses"
-        )
-        .scrollIntoView({
-            behavior: "smooth"
-        });
 
 }
 
@@ -679,74 +990,701 @@ function showAllCourses() {
    CLASSES
 ===================================================== */
 
-function joinClass(className) {
+function joinClass() {
+
+    openModal(`
+
+        <div style="font-size:35px">
+            🎥
+        </div>
+
+        <h2>
+            JavaScript Fundamentals
+        </h2>
+
+        <p style="color:#8993a6">
+            Your live classroom is ready.
+        </p>
+
+        <div style="
+            margin:20px 0;
+            padding:15px;
+            background:#171d29;
+            border-radius:10px;
+        ">
+
+            🔴 Class begins at 4:00 PM
+
+            <br><br>
+
+            👨‍🏫 Instructor:
+            ${currentUser.name}
+
+            <br><br>
+
+            👥 32 students registered
+
+        </div>
+
+        <button
+            class="primary full"
+            onclick="enterClassroom()"
+        >
+            Enter Classroom
+        </button>
+
+    `);
+
+}
+
+
+function enterClassroom() {
+
+    closeModal();
+
 
     alert(
-        "🎥 " +
-        className +
-        "\n\n" +
-        "The live classroom will open here."
+        "🎥 Entering classroom...\n\n" +
+        "The real meeting system will be connected later."
     );
 
 }
 
 
-function scrollToCourses() {
+function reminder() {
 
-    document
-        .getElementById(
-            "courses"
-        )
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    alert(
+        "🔔 Reminder set!"
+    );
 
 }
 
 
 /* =====================================================
-   CLOSE MODALS WHEN CLICKING OUTSIDE
+   ASSIGNMENTS
 ===================================================== */
 
-window.addEventListener(
+function openAssignment(
+    name
+) {
+
+    openModal(`
+
+        <div class="eyebrow">
+            ASSIGNMENT
+        </div>
+
+        <h2 style="margin-top:8px">
+            ${name}
+        </h2>
+
+        <p style="color:#8993a6;margin:10px 0">
+            Complete this assignment and submit your work.
+        </p>
+
+        <textarea
+            id="assignmentAnswer"
+            placeholder="Write your answer or describe your project..."
+        ></textarea>
+
+        <br><br>
+
+        <button
+            class="primary full"
+            onclick="submitAssignment()"
+        >
+            Submit Assignment
+        </button>
+
+    `);
+
+}
+
+
+function submitAssignment() {
+
+    closeModal();
+
+
+    alert(
+        "✅ Assignment submitted!"
+    );
+
+}
+
+
+/* =====================================================
+   TESTS
+===================================================== */
+
+function startTest() {
+
+    openModal(`
+
+        <div style="font-size:35px">
+            🧪
+        </div>
+
+        <h2>
+            Start Test
+        </h2>
+
+        <p style="color:#8993a6">
+            This test contains 20 questions.
+        </p>
+
+        <div style="
+            padding:15px;
+            margin:20px 0;
+            border-radius:10px;
+            background:#171d29;
+        ">
+
+            ⏱️ 30 minutes
+
+            <br><br>
+
+            🎯 Passing score: 60%
+
+        </div>
+
+        <button
+            class="primary full"
+            onclick="beginTest()"
+        >
+            Begin Test
+        </button>
+
+    `);
+
+}
+
+
+function beginTest() {
+
+    closeModal();
+
+
+    alert(
+        "🧪 Test started!"
+    );
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function editProfile() {
+
+    openModal(`
+
+        <h2>
+            Edit Profile
+        </h2>
+
+        <input
+            id="newName"
+            value="${currentUser.name}"
+            placeholder="Your name"
+        >
+
+        <br><br>
+
+        <button
+            class="primary full"
+            onclick="saveProfile()"
+        >
+            Save Changes
+        </button>
+
+    `);
+
+}
+
+
+function saveProfile() {
+
+    const name =
+        document
+            .getElementById(
+                "newName"
+            )
+            .value
+            .trim();
+
+
+    if (!name) {
+
+        alert(
+            "Please enter a name."
+        );
+
+        return;
+
+    }
+
+
+    currentUser.name =
+        name;
+
+
+    saveUser();
+
+
+    updateUserInterface();
+
+
+    closeModal();
+
+}
+
+
+/* =====================================================
+   TEACHER STUDIO
+===================================================== */
+
+function createCourse() {
+
+    openModal(`
+
+        <div class="eyebrow">
+            TEACHER STUDIO
+        </div>
+
+        <h2 style="margin-top:8px">
+            Create a Course
+        </h2>
+
+        <input
+            id="courseName"
+            placeholder="Course name"
+        >
+
+        <input
+            id="courseSubject"
+            placeholder="Subject"
+        >
+
+        <textarea
+            id="courseDescription"
+            placeholder="Course description"
+        ></textarea>
+
+        <br>
+
+        <button
+            class="primary full"
+            onclick="saveCourse()"
+        >
+            Create Course
+        </button>
+
+    `);
+
+}
+
+
+function saveCourse() {
+
+    const name =
+        document
+            .getElementById(
+                "courseName"
+            )
+            .value
+            .trim();
+
+
+    const subject =
+        document
+            .getElementById(
+                "courseSubject"
+            )
+            .value
+            .trim();
+
+
+    if (!name || !subject) {
+
+        alert(
+            "Please enter the course name and subject."
+        );
+
+        return;
+
+    }
+
+
+    closeModal();
+
+
+    alert(
+        "📚 Course created!\n\n" +
+        name +
+        "\n\nInstructor: " +
+        currentUser.name
+    );
+
+}
+
+
+function uploadVideo() {
+
+    openModal(`
+
+        <h2>
+            🎥 Upload Class
+        </h2>
+
+        <p style="color:#8993a6">
+            Add a video lesson to your course.
+        </p>
+
+        <input
+            type="file"
+            accept="video/*"
+        >
+
+        <input
+            placeholder="Lesson title"
+        >
+
+        <br><br>
+
+        <button
+            class="primary full"
+            onclick="fakeUpload()"
+        >
+            Upload Video
+        </button>
+
+    `);
+
+}
+
+
+function fakeUpload() {
+
+    closeModal();
+
+
+    alert(
+        "🎥 Video selected!\n\n" +
+        "Real video storage will be connected when we add the backend."
+    );
+
+}
+
+
+function createAssignment() {
+
+    openModal(`
+
+        <h2>
+            📝 Create Assignment
+        </h2>
+
+        <input
+            placeholder="Assignment title"
+        >
+
+        <textarea
+            placeholder="Instructions"
+        ></textarea>
+
+        <input
+            type="number"
+            placeholder="Total points"
+        >
+
+        <br><br>
+
+        <button
+            class="primary full"
+            onclick="publishAssignment()"
+        >
+            Publish Assignment
+        </button>
+
+    `);
+
+}
+
+
+function publishAssignment() {
+
+    closeModal();
+
+
+    alert(
+        "📝 Assignment published!"
+    );
+
+}
+
+
+function createMeeting() {
+
+    openModal(`
+
+        <h2>
+            💻 Schedule Meeting
+        </h2>
+
+        <input
+            placeholder="Class title"
+        >
+
+        <input
+            type="date"
+        >
+
+        <input
+            type="time"
+        >
+
+        <br><br>
+
+        <button
+            class="primary full"
+            onclick="scheduleMeeting()"
+        >
+            Schedule Class
+        </button>
+
+    `);
+
+}
+
+
+function scheduleMeeting() {
+
+    closeModal();
+
+
+    alert(
+        "💻 Class scheduled!"
+    );
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+const modal =
+    document.getElementById(
+        "modal"
+    );
+
+
+const modalContent =
+    document.getElementById(
+        "modalContent"
+    );
+
+
+function openModal(
+    content
+) {
+
+    modalContent.innerHTML =
+        content;
+
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeModal() {
+
+    modal.classList.remove(
+        "show"
+    );
+
+}
+
+
+modal.addEventListener(
     "click",
-    function(event) {
+    event => {
 
-        const login =
-            document.getElementById(
-                "loginModal"
-            );
+        if (
+            event.target ===
+            modal
+        ) {
 
-        const signup =
-            document.getElementById(
-                "signupModal"
-            );
-
-        const course =
-            document.getElementById(
-                "courseModal"
-            );
-
-
-        if (event.target === login) {
-
-            closeLogin();
-
-        }
-
-
-        if (event.target === signup) {
-
-            closeSignup();
-
-        }
-
-
-        if (event.target === course) {
-
-            closeCourse();
+            closeModal();
 
         }
 
     }
 );
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+const darkToggle =
+    document.getElementById(
+        "darkToggle"
+    );
+
+
+darkToggle.addEventListener(
+    "change",
+    () => {
+
+        if (
+            !darkToggle.checked
+        ) {
+
+            document.body.style.setProperty(
+                "--bg",
+                "#f4f6fa"
+            );
+
+            document.body.style.setProperty(
+                "--sidebar",
+                "#ffffff"
+            );
+
+            document.body.style.setProperty(
+                "--card",
+                "#ffffff"
+            );
+
+            document.body.style.setProperty(
+                "--card2",
+                "#eef1f7"
+            );
+
+            document.body.style.setProperty(
+                "--text",
+                "#111522"
+            );
+
+            document.body.style.setProperty(
+                "--muted",
+                "#687184"
+            );
+
+        }
+
+        else {
+
+            document.body.style.setProperty(
+                "--bg",
+                "#080a10"
+            );
+
+            document.body.style.setProperty(
+                "--sidebar",
+                "#0d1018"
+            );
+
+            document.body.style.setProperty(
+                "--card",
+                "#111620"
+            );
+
+            document.body.style.setProperty(
+                "--card2",
+                "#171d29"
+            );
+
+            document.body.style.setProperty(
+                "--text",
+                "#f5f7fb"
+            );
+
+            document.body.style.setProperty(
+                "--muted",
+                "#8993a6"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                "lernoUser"
+            );
+
+
+            location.reload();
+
+        }
+    );
+
+
+/* =====================================================
+   SAVE USER
+===================================================== */
+
+function saveUser() {
+
+    localStorage.setItem(
+        "lernoUser",
+        JSON.stringify(
+            currentUser
+        )
+    );
+
+}
+
+
+/* =====================================================
+   LOAD USER
+===================================================== */
+
+const savedUser =
+    localStorage.getItem(
+        "lernoUser"
+    );
+
+
+if (savedUser) {
+
+    try {
+
+        currentUser =
+            JSON.parse(
+                savedUser
+            );
+
+
+        launchApp();
+
+    }
+
+    catch {
+
+        console.log(
+            "Could not load saved Lerno account."
+        );
+
+    }
+
+}
